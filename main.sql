@@ -35,8 +35,8 @@ CREATE TABLE tasks(
     PRIMARY KEY(task_id) 
 )WITHOUT ROWID;
 
--- --------------------------------------------------
--- -- Section TASKS_ASSIGNMENTS
+----------------------------------------------------
+---- Section TASKS_ASSIGNMENTS
 
 DROP TABLE IF EXISTS tasks_assignments;
 CREATE TABLE tasks_assignments(
@@ -44,3 +44,17 @@ CREATE TABLE tasks_assignments(
     task_assignment_task_fk     TEXT,
     PRIMARY KEY(task_assignment_user_fk, task_assignment_task_fk)
 )WITHOUT ROWID;
+
+----------------------------------------------------
+---- Section USER_ROLES
+-- Role 0 = Standard user
+-- Role 1 = Admin user
+-- Role 2 = Deleted/deactivated user
+
+DROP TABLE IF EXISTS user_roles;
+
+CREATE TABLE user_roles(
+    user_role_id       TEXT,
+    user_role_desc     TEXT,
+    PRIMARY KEY(user_role_id, user_role_desc)
+) WITHOUT ROWID;

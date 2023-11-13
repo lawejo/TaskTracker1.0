@@ -2,7 +2,7 @@ from bottle import default_app, get, post, request, response, run, static_file
 
 import routes.render_index
 
-
+import apis.api_sign_up
 
 ##############################
 ##### Så den kan finde vores JS
