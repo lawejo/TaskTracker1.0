@@ -20,7 +20,7 @@ CREATE TABLE users(
 ) WITHOUT ROWID;
 
 --------------------------------------------------
--- Section TASKS
+--- Section TASKS
 
 DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
