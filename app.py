@@ -52,6 +52,7 @@ def _():
 # Import Apis
 import apis.api_create_task
 import apis.api_delete_task
+import apis.api_edit_task
 
 
 #############################
