@@ -49,6 +49,11 @@ def _():
     return static_file("output.css", root=".")
 
 
+# Import Apis
+import apis.api_create_task
+import apis.api_delete_task
+
+
 #############################
 
 try:
@@ -56,4 +61,4 @@ try:
     application = default_app()
 except Exception as ex:
     print("Running local server")
-    run(host="127.0.0.1", port=2, debug=True, reloader=True, )
+    run(host="127.0.0.1", port=3000, debug=True, reloader=True, )
