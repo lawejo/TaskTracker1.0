@@ -1,7 +1,8 @@
 from bottle import default_app, get, post, request, response, run, static_file
-
+### Routes
 import routes.render_index
-
+import routes.render_verification
+## Apis
 import apis.api_sign_up
 
 ##############################

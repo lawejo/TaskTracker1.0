@@ -25,6 +25,17 @@ def db():
         pass
 
 ##############################
+##### Email address
+EMAIL_AHREF = ''
+try:
+    import production
+    EMAIL_AHREF = 'pythonanywhere'
+except Exception as ex:
+    print("Running local server")
+    EMAIL_AHREF = "http://127.0.0.1:2"
+
+
+##############################
 ##### Validation of user inputs
 
 USER_FIRSTNAME_MIN = 1
@@ -90,7 +101,6 @@ def validate_user_password():
     error = f"Your password has to be {USER_PASSWORD_MIN} to {USER_PASSWORD_MAX} characters"
     user_password = request.forms.get("user_password", "")
     user_password = user_password.strip()
-    print(user_password)
     request.forms.user_password = request.forms.user_password.strip()
     if len(user_password) < USER_PASSWORD_MIN:
         raise Exception(error)

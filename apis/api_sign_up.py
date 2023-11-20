@@ -4,6 +4,7 @@ import traceback
 import uuid
 import time
 import bcrypt
+import emails.email_sign_up as email
 @post("/api-sign-up")
 def _():
     try:
@@ -45,12 +46,12 @@ def _():
         for key in user:
             values += f":{key},"
         values = values.rstrip(",")
-        print(f'From API sign up after bcrypt"{user["user_password"]}"')
         total_rows_inserted = db.execute(
             f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1:
             raise Exception("Please, try again")
-        
+        email.email_sign_up(user_email, user_verification_key)
+
         db.commit()
         return {"info":"ok", "user":user}
     except Exception as e:
