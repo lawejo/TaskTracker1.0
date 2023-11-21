@@ -9,7 +9,6 @@ import emails.email_sign_up as email
 def _():
     try:
         db = x.db()
-        salt = bcrypt.gensalt()
         ###############
         user_id = str(uuid.uuid4()).replace("-", "")
         user_created_at = int(time.time())
@@ -32,7 +31,7 @@ def _():
             "user_firstname": user_firstname,
             "user_lastname": user_lastname,
             "user_email": user_email,
-            "user_password": bcrypt.hashpw(user_password.encode(), salt).decode(),
+            "user_password": bcrypt.hashpw(user_password.encode("utf-8"), bcrypt.gensalt()),
             "user_tasks_created": user_tasks_created,
             "user_assigned_task_count": user_assigned_task_count,
             "user_role": user_role,
@@ -50,6 +49,7 @@ def _():
             f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1:
             raise Exception("Please, try again")
+        
         email.email_sign_up(user_email, user_verification_key)
 
         db.commit()

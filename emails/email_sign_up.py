@@ -30,7 +30,7 @@ def email_sign_up(receiver_email, user_verification_key):
 </head>
 <body style="font-family: 'Arial', sans-serif; background: #2D2D35; background: linear-gradient(180deg, #2D2D35 0%, #000000 80%, #000000 100%); color: #ffffff; padding: 20px; text-align: center;">
 
-    <h1 style="color: #4285f4;">TaskTrackr Solutions</h1>
+    <h1 style="color: #4285f4;">TaskTrackr</h1>
     
     <p style="font-size: 16px;">Welcome to TaskTrackr! Verify your email address to get started.</p>
     
@@ -38,9 +38,9 @@ def email_sign_up(receiver_email, user_verification_key):
 
     <p style="font-size: 14px; margin-top: 20px;">If you can't click the link above, copy and paste the following URL into your browser: {x.EMAIL_AHREF}/verification/{user_verification_key}</p>
 
-    <p style="font-size: 14px; margin-top: 20px;">Thank you for choosing TaskTrackr Solutions. We're excited to have you on board!</p>
+    <p style="font-size: 14px; margin-top: 20px;">Thank you for choosing TaskTrackr. We're excited to have you on board!</p>
 
-    <p style="font-size: 12px; color: #ccc;">This email was sent by TaskTrackr Solutions. Please do not reply to this email.</p>
+    <p style="font-size: 12px; color: #ccc;">This email was sent by TaskTrackr. Please do not reply to this email.</p>
 
 </body>
 </html>
