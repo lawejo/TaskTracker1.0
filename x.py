@@ -3,10 +3,15 @@ import os
 import sqlite3
 import pathlib
 import re
+from dotenv import load_dotenv
 
 ##############################
 ##### Cookie
+
+# Load variables from .env file
+load_dotenv()
 COOKIE_SECRET = os.getenv("COOKIE_SECRET")
+
 ##############################
 ##### Database
 
