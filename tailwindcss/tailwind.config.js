@@ -1,20 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
-  content: [
-    '../views/*.html'],
+  content: ["../**/*.html", "../js/*.js"],
   theme: {
+    fontFamily: {
+      montserrat: ["Montserrat", "sans-serif"],
+    },
     extend: {
-      // Import fonts aswell - Gotham
       colors: {
-        primary: "#D1D1DF", //dark grey
-        secondary: "#B9BFD4", //light grey
+        primary: "#D1D1DF",
+        secondary: "#B9BFD4",
         grey: "#6D6D6D",
         detail: "#7A7A8C",
-      },
-      backgroundImage: {
-        "btn-gradient":
-          "linear-gradient(90deg, rgba(85, 85, 97, 0.60) 0%, #2F2F33 90%)",
       },
       fontSize: {
         "2xl": [
