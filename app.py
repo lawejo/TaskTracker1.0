@@ -1,6 +1,7 @@
 from bottle import default_app, get, post, request, response, run, static_file
 
 import routes.render_index
+import routes.render_task
 
 
 

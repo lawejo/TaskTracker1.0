@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Task</title>
+    <!-- Include Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container p-8 mx-auto">
+      <h1 class="mb-4 text-2xl font-bold">Create a Task</h1>
+      <div class="">
+      <form onsubmit="createTask(); return false">
+        <input
+        name="task_title"
+        class="bg-white border outline-none"
+        type="text"
+        placeholder="title"
+        data-validate="str"
+        data-min=""
+        data-max=""
+      />
+      <input
+      name="task_description"
+      class="bg-white border outline-none"
+      type="text"
+      placeholder="title"
+      data-validate="str"
+      data-min=""
+      data-max=""
+    />
+      <div class="">
+        <button
+          type="submit"
+          class=""
+        >
+          Create task
+        </button>
+      </form>
+    </div>
+    </div>
+
+    <!-- <form
+    action="/api_create_task.py"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="mb-4">
+      <label for="task_title" class="block mb-2 font-bold text-gray-700"
+        >Title</label
+      >
+      <input
+        type="text"
+        id="task_title"
+        name="task_title"
+        class="w-full px-4 py-2 border rounded"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="task_description" class="block mb-2 font-bold text-gray-700"
+        >Description</label
+      >
+      <textarea
+        id="task_description"
+        name="task_description"
+        class="w-full h-24 px-4 py-2 border rounded"
+      ></textarea>
+    </div>
+    <div class="mb-4">
+      <label for="task_due_date" class="block mb-2 font-bold text-gray-700"
+        >Due Date</label
+      >
+      <input
+        type="date"
+        id="task_due_date"
+        name="task_due_date"
+        class="w-full px-4 py-2 border rounded"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="task_visibility" class="block mb-2 font-bold text-gray-700"
+        >Visibility</label
+      >
+      <select
+        id="task_visibility"
+        name="task_visibility"
+        class="w-full px-4 py-2 border rounded"
+      >
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+      </select>
+    </div>
+    <!-- You can add an input field for uploading an image if needed -->
+    <!-- <div class="mb-4">
+  <label for="task_image" class="block mb-2 font-bold text-gray-700">Image</label>
+  <input type="file" id="task_image" name="task_image" class="w-full px-4 py-2 border rounded">
+</div> -->
+    <button
+      type="submit"
+      onsubmit="createTask(); return false"
+      class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+    >
+      Create Task
+    </button>
+  </form> -->
+
+    
+  </body>
+  <script src="../js/create-task.js"></script>
+</html>
+
