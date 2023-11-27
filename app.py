@@ -4,6 +4,7 @@ import routes.render_index
 import routes.render_verification
 ## Apis
 import apis.api_sign_up
+import apis.api_login
 
 ##############################
 ##### Så den kan finde vores JS
@@ -12,7 +13,7 @@ import apis.api_sign_up
 def _(filename):
     return static_file(filename, "js")
 
-##############################
+#############################s#
 ##### Så den kan finde billeder
 
 @get("/images/<filename:re:.*\.jpg>")
