@@ -1,9 +1,13 @@
 from bottle import default_app, get, post, request, response, run, static_file
-
+### Routes
 import routes.render_index
 import routes.render_task
 
 
+import routes.render_verification
+## Apis
+import apis.api_sign_up
+import apis.api_login
 
 ##############################
 ##### Så den kan finde vores JS
@@ -12,7 +16,7 @@ import routes.render_task
 def _(filename):
     return static_file(filename, "js")
 
-##############################
+#############################s#
 ##### Så den kan finde billeder
 
 @get("/images/<filename:re:.*\.jpg>")
