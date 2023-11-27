@@ -30,11 +30,11 @@ DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
     task_id                     TEXT    UNIQUE NOT NULL,
     task_created_at             TEXT    NOT NULL,
-    task_titel                  TEXT    NOT NULL,
+    task_title                  TEXT    NOT NULL,
     task_description            TEXT    NOT NULL,
     task_due_date               TEXT    NOT NULL,
     task_visibility             TEXT    INTEGER DEFAULT 0,
-    task_image                  TEXT    UNIQUE,
+    task_image                  TEXT    NULL,
     task_assigned_users         TEXT    INTEGER DEFAULT 0,
     PRIMARY KEY(task_id) 
 )WITHOUT ROWID;
