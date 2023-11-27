@@ -1,12 +1,12 @@
 from bottle import request, response 
-
+import os
 import sqlite3
 import pathlib
 import re
 
 ##############################
 ##### Cookie
-COOKIE_SECRET = "897ee7a81e064e56a7c1a65e4b2479fc"
+COOKIE_SECRET = os.getenv("COOKIE_SECRET")
 ##############################
 ##### Database
 
