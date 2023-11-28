@@ -8,6 +8,10 @@ import routes.render_verification
 ## Apis
 import apis.api_sign_up
 import apis.api_login
+import apis.api_create_task
+import apis.api_delete_task
+import apis.api_edit_task
+
 
 ##############################
 ##### Så den kan finde vores JS
@@ -54,10 +58,6 @@ def _():
     return static_file("output.css", root=".")
 
 
-# Import Apis
-import apis.api_create_task
-import apis.api_delete_task
-import apis.api_edit_task
 
 
 #############################
