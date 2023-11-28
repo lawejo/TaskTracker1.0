@@ -9,8 +9,26 @@
   <title>TaskTracker</title>
 </head>
 
-<body class="bg-black">
-  <h1 class="text-blue-800">hello</h1>
+<body class="bg-black text-white">
+  <section
+    class="flex [&>article]:w-full h-screen [&>article]:flex [&>article]:flex-col [&>article]:justify-center px-6">
+    <article class="items-center">
+      <a href="/"><img src="../assets/logo.svg" class="w-full h-full" alt=""></a>
+    </article>
+    <article>
+      <p class="font-bold">TaskTracker</p>
+      <h1 class="text-h1">Turning chaos into order, one task at a time.</h1>
+      <div class=" mt-6 grid w-fit">
+        <div class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2">
+
+          <a href="/sign-up" class="bg-primary hover:bg-secondary text-black">Create an account</a>
+          <a href="/login" class="hover:bg-primary hover:text-black transition duration-300 ease-in-out ">Log in</a>
+        </div>
+        <a href="#" class="ml-auto w-fit italic text-detail mt-2 hover:underline transition ease-in-out">Or continue as
+          a <span class="underline">guest</span></a>
+      </div>
+    </article>
+  </section>
 </body>
 
 </html>

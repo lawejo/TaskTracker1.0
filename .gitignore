@@ -5,6 +5,6 @@ include
 lib
 pyvenv.cfg
 .env 
-__pycache__
-*.Scripts
 Scripts
+__pycache__
+images

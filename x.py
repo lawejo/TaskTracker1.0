@@ -66,6 +66,9 @@ USER_FIRSTNAME_REGEX = "^[a-zA-Z-9_]*$"
 def validate_user_firstname():
     error = f"Firstname must {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} letters or numbers from 0 to 9"
     request.forms.user_firstname = request.forms.user_firstname.strip()
+    print('*'*40)
+    print(f'FROM x.py = {request.forms.user_firstname}')
+    print('*'*40)
     if len(request.forms.user_firstname) < USER_FIRSTNAME_MIN:
         raise Exception(error)
     if len(request.forms.user_firstname) > USER_FIRSTNAME_MAX:

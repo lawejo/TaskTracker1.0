@@ -2,9 +2,10 @@ from bottle import default_app, get, post, request, response, run, static_file
 ### Routes
 import routes.render_index
 import routes.render_task
-
-
 import routes.render_verification
+import routes.render_sign_up
+
+
 ## Apis
 import apis.api_sign_up
 import apis.api_login
@@ -21,29 +22,33 @@ def _(filename):
 
 @get("/images/<filename:re:.*\.jpg>")
 def _(filename):
-    return static_file(filename, root="./images")
+    return static_file(filename, root="./assets")
 
 
-@get("/images/<filename:re:.*\.JPG>")
+@get("/assets/<filename:re:.*\.JPG>")
 def _(filename):
-    return static_file(filename, root="./images")
+    return static_file(filename, root="./assets")
 
 
-@get("/images/<filename:re:.*\.jpeg>")
+@get("/assets/<filename:re:.*\.jpeg>")
 def _(filename):
-    return static_file(filename, root="./images")
+    return static_file(filename, root="./assets")
 
 
 
-@get("/images/<filename:re:.*\.png>")
+@get("/assets/<filename:re:.*\.png>")
 def _(filename):
-    return static_file(filename, root="./images")
+    return static_file(filename, root="./assets")
 
 
-
-@get("/images/<filename:re:.*\.png>")
+@get("/assets/<filename:re:.*\.svg>")
 def _(filename):
-    return static_file(filename, root="./images")
+    return static_file(filename, root="./assets")
+
+
+@get("/assets/<filename:re:.*\.png>")
+def _(filename):
+    return static_file(filename, root="./assets")
 
 #############################
 ##### Så den kan finde CSS
