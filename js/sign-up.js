@@ -15,7 +15,13 @@ async function submitSignUp() {
     }
     function error() {
         console.log(`error`);
-        errorElement.innerHTML = data.errortype
+        errorElement.parentElement.classList.remove('hidden');
+        if (data.errortype === "UNIQUE constraint failed: users.user_email") {
+            errorElement.innerHTML = "Email already in use. Try another"
+
+        } else {
+            errorElement.innerHTML = data.errortype
+        }
     }
 
 
