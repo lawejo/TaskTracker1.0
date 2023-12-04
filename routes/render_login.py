@@ -1,6 +1,6 @@
 from bottle import get, template
 ##############################
-@get("/sign-up")
+@get("/login")
 def _():
 
-    return template("sign-up")
+    return template("login")

@@ -3,7 +3,7 @@ const feedbackElement = document.querySelector('.feedback-element');
 async function submitSignUp() {
 
     const frm = event.target // the form
-    const conn = await fetch("/api-sign-up", {
+    const conn = await fetch("/api-login", {
         method: "POST",
         body: new FormData(frm)
     })
@@ -14,18 +14,15 @@ async function submitSignUp() {
         feedbackElement.parentElement.classList.add('bg-green-500');
         feedbackElement.parentElement.classList.remove('hidden');
         feedbackElement.innerHTML = data.message
+        setTimeout(() => { location.href = `/` }, 1500)
     }
     function error() {
         feedbackElement.parentElement.classList.add('bg-red-600');
         feedbackElement.parentElement.classList.remove('hidden');
-        if (data.errortype === "UNIQUE constraint failed: users.user_email") {
-            feedbackElement.innerHTML = "Email already in use. Try another"
+        feedbackElement.innerHTML = data.errortype
 
-        } else {
-            feedbackElement.innerHTML = data.errortype
-        }
     }
 
 
-    1
+
 };

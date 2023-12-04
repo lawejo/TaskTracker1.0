@@ -8,7 +8,7 @@ images
 pyvenv.cfg
 __pycache__
 Scripts
-test.sql
+!test.sql
 *.pyc
 apis/__pycache__
 routes/__pycache__
