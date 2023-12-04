@@ -6,3 +6,6 @@ lib
 pyvenv.cfg
 .env 
 __pycache__
+Scripts
+test.sql
+*.pyc
