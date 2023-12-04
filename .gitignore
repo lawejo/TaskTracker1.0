@@ -9,3 +9,5 @@ __pycache__
 Scripts
 test.sql
 *.pyc
+apis/__pycache__
+routes/__pycache__
