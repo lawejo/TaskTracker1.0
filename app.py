@@ -4,6 +4,7 @@ import routes.render_index
 import routes.render_task
 import routes.render_verification
 import routes.render_sign_up
+import routes.render_login
 
 
 ## Apis
