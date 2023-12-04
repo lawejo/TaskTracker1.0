@@ -3,9 +3,12 @@ node_modules
 bin
 include
 lib
-pyvenv.cfg
 .env 
-Scripts
-__pycache__
 images
 pyvenv.cfg
+__pycache__
+Scripts
+test.sql
+*.pyc
+apis/__pycache__
+routes/__pycache__
