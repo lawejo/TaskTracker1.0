@@ -5,11 +5,14 @@ import routes.render_task
 import routes.render_verification
 import routes.render_sign_up
 import routes.render_login
+import routes.render_profile
 
 
 ## Apis
 import apis.api_sign_up
 import apis.api_login
+import apis.api_reset_password
+import apis.api_update_user
 
 ##############################
 ##### Så den kan finde vores JS

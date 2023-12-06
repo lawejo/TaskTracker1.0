@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/output.css" />
+
+  <title>TaskTracker</title>
+</head>
+
+<body class="bg-black text-white">
+  <section
+    class="flex [&>article]:w-full h-screen [&>article]:flex [&>article]:flex-col [&>article]:justify-center px-6">
+    <article class="items-center">
+      <a href="/"><img src="../assets/logo.svg" class="w-full h-full" alt=""></a>
+    </article>
+    % if not get("user_cookie"):
+    <p>Error</p>
+    % else:
+    <article>
+      <p class="font-bold">TaskTracker</p>
+      <h1 class="text-h1">This is your profile.</h1>
+      <div class="mt-6 grid w-fit">
+        <div class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2">
+
+            <p class="font-bold">Welcome @{{user["user_firstname"]}}</p>
+        </div>
+
+      </div>
+    </article>
+    % end
+  </section>
+</body>
+
+</html>

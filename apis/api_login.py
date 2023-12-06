@@ -18,7 +18,7 @@ def _():
         if not user:
             raise Exception(400, error_message)
         
-        if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"].encode()):
+        if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"]):
              raise Exception(400, error_message)
 
         if user["user_verified_at"] == "0":
@@ -35,8 +35,11 @@ def _():
             is_cookie_https = True
         except:
             is_cookie_https = False
+        print(x.COOKIE_SECRET)
         response.set_cookie("user", user, secret=x.COOKIE_SECRET,
                             httponly=True)
+        print(x.COOKIE_SECRET)
+        print(response)
         return {"info": "ok", "message": "You will be redirected shortly."}
     except Exception as e:
         print(e)
