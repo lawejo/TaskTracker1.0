@@ -5,7 +5,7 @@ import time
 import sqlite3
 import os
 
-@post("/api_create_task")
+@post("/api-create-task")
 def create_task():
     try:
         db = x.db()
