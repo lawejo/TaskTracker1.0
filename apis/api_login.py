@@ -18,7 +18,7 @@ def _():
         if not user:
             raise Exception(400, error_message)
         
-        if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"].encode()):
+        if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"]):
              raise Exception(400, error_message)
 
         if user["user_verified_at"] == "0":

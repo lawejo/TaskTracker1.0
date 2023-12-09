@@ -13,3 +13,4 @@ Scripts
 apis/__pycache__
 routes/__pycache__
 !test.sql
+output.css
