@@ -53,7 +53,7 @@ try:
     EMAIL_AHREF = 'pythonanywhere'
 except Exception as ex:
     print("Running local server")
-    EMAIL_AHREF = "http://127.0.0.1:2"
+    EMAIL_AHREF = "http://127.0.0.1:3000"
 
 
 ##############################

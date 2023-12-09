@@ -8,10 +8,12 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#D1D1DF",
-        secondary: "#B9BFD4",
-        grey: "#6D6D6D",
+        primary: "#222327",
+        secondary: "#FBFBFB",
+        text: "#B9BFD4",
         detail: "#7A7A8C",
+        bgcolor:
+          "linear-gradient(90deg, rgba(85, 85, 97, 0.60) 0%, #2F2F33 90%)",
       },
       fontSize: {
         "2xl": [

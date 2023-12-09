@@ -6,9 +6,11 @@ lib
 .env 
 images
 pyvenv.cfg
+.env 
 __pycache__
 Scripts
 *.pyc
 apis/__pycache__
 routes/__pycache__
 !test.sql
+output.css
