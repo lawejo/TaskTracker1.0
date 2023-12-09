@@ -1,7 +1,9 @@
 from bottle import default_app, get, post, request, response, run, static_file
 ### Routes
 import routes.render_index
+import routes.render_dashboard
 import routes.render_task
+
 
 
 import routes.render_verification
@@ -67,4 +69,4 @@ try:
     application = default_app()
 except Exception as ex:
     print("Running local server")
-    run(host="127.0.0.1", port=3000, debug=True, reloader=True, )
+    run(host="127.0.0.1", port=5858, debug=True, reloader=True, )
