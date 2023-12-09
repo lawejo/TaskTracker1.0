@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/output.css" />
+
+    <title>TaskTracker</title>
+</head>
+
+<body class="bg-black text-white">
+    %include('comp_feedback')
+    <section
+        class="flex [&>article]:w-full h-screen [&>article]:flex [&>article]:flex-col [&>article]:justify-center px-6">
+        <article class="items-center">
+            <a href="/">
+                <img src="../assets/logo.svg" class="w-full h-full" alt="">
+            </a>
+        </article>
+        <article class="bg-black justify-self-start justify-start  rounded-xl flex w-fit">
+            <p class="font-bold">TaskTracker</p>
+
+            <h1 class="text-h1 mb-6">Log In to your account.</h1>
+
+            <form class="flex flex-col max-w-md " onsubmit="submitSignUp(); return false">
+
+                <label for="user_email">Email</label>
+                <input id="user_email" class=" h-10 rounded-2xl pl-2 w-full  text-white bg-black border border-white/30"
+                    placeholder="Email" name="user_email" type="email" required>
+
+                <label for="user_password ">Password</label>
+                <input id="user_password"
+                    class=" h-10 rounded-2xl pl-2 w-full  text-white bg-black border border-white/30"
+                    placeholder="Password" name="user_password" type="password" required>
+
+
+
+
+                <button class="bg-secondary text-black max-w-fit ml-auto px-4 py-2 rounded-2xl pl-2 mt-4">Login</button>
+            </form>
+
+        </article>
+
+    </section>
+</body>
+<script src="/js/login.js"></script>
+
+</html>

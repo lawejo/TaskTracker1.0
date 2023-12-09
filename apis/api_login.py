@@ -6,6 +6,7 @@ import bcrypt
 @post("/api-login")
 def _():
     try:
+        error_message = "Invalid credentials"
         db = x.db()
         user_email = request.forms.get('user_email')
         user_password = request.forms.get('user_password')
@@ -15,10 +16,10 @@ def _():
      
     
         if not user:
-            raise Exception(400, "Wrong email or username")
+            raise Exception(400, error_message)
         
         if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"].encode()):
-             raise Exception(400, "Invalid credentials")
+             raise Exception(400, error_message)
 
         if user["user_verified_at"] == "0":
             raise Exception(
@@ -26,6 +27,7 @@ def _():
         print('*'*40)
         print(f'FROM api_login.py = {x.COOKIE_SECRET}')
         print('*'*40)
+ 
         if user["user_inactive"] == "1":
             print(user)
             raise Exception(

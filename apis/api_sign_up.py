@@ -41,6 +41,7 @@ def _():
             "user_inactive": user_inactive,
             "user_reset_key": user_reset_key
         }
+     
         values = ""
         for key in user:
             values += f":{key},"
@@ -51,9 +52,9 @@ def _():
             raise Exception("Please, try again")
         
         email.email_sign_up(user_email, user_verification_key)
-
         db.commit()
-        return {"info":"ok", "user":user}
+       
+        return {"info":"ok", "message": "Your sign-up is complete. Please check your email to verify and enjoy full access to our services."}
     except Exception as e:
         print(e)
         if "db" in locals():
