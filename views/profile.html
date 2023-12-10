@@ -15,7 +15,7 @@
     <article class="items-center">
       <a href="/"><img src="../assets/logo.svg" class="w-full h-full" alt=""></a>
     </article>
-    % if not get("user_cookie"):
+    % if not user_cookie:
     <p>Error</p>
     % else:
     <article>
@@ -24,7 +24,7 @@
       <div class="mt-6 grid w-fit">
         <div class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2">
 
-            <p class="font-bold">Welcome @{{user["user_firstname"]}}</p>
+            <p class="font-bold">Welcome @{{user_cookie["user_firstname"]}}</p>
         </div>
 
       </div>
