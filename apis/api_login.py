@@ -8,8 +8,8 @@ def _():
     try:
         error_message = "Invalid credentials"
         db = x.db()
-        user_email = request.forms.get('user_email')
-        user_password = request.forms.get('user_password')
+        user_email = request.forms.get('user_email').strip()
+        user_password = request.forms.get('user_password').strip()
        
         user = db.execute(
                 "SELECT * FROM users WHERE user_email = ?", (user_email,)).fetchone()
