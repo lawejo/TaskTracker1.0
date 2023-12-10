@@ -1,25 +1,42 @@
-<!-- Task Creation Modal -->
-<div id="taskModal" class="fixed inset-0 z-50 hidden">
-  <div class="flex items-center justify-center h-screen">
-    <div class="fixed inset-0 bg-opacity-25 bg-detail"></div>
-    <div class="relative z-10 p-6 rounded-md bg-primary w-96 md:w-3/5">
-      <h2 class="mb-4 font-semibold text-h3 text-secondary">Create Task</h2>
-      <form onsubmit="createTask(); return false">
+function openTaskModal(button) {
+  const modal = document.getElementById("editTaskModal");
+  modal.classList.remove("hidden");
+
+  const taskContainer = button.closest(".task-container");
+  const taskId = document.querySelector(".task_id").value;
+  const taskTitle = taskContainer.querySelector(".text-secondary").textContent;
+  const taskDueDate = document.querySelector(".task_due_date").textContent;
+  const taskDescription = taskContainer.querySelector(".text-text").textContent;
+
+  console.log(taskId);
+  const modalTitle = modal.querySelector("h2");
+  modalTitle.textContent = taskTitle;
+
+  const editTaskForm = document.getElementById("editTaskForm");
+  editTaskForm.innerHTML = `
+          <input
+          type="hidden"
+          class="task_id"
+          name="task_id"
+          value="${taskId}"
+        />
         <input
           type="text"
           name="task_title"
           placeholder="Task Title"
+          value="${taskTitle}"
           class="block w-full px-3 py-2 mb-3 bg-transparent border rounded border-[#6D6D6D] placeholder-[#D9D9D9] text-secondary"
         />
         <textarea
           name="task_description"
           placeholder="Task Description"
           class="block w-full px-3 py-2 mb-3 bg-transparent border rounded border-[#6D6D6D] placeholder-[#D9D9D9] text-secondary"
-        ></textarea>
+        >${taskDescription}</textarea>
         <input
           type="date"
           name="task_due_date"
           placeholder="Due Date"
+          value="${taskDueDate}"
           class="block w-full px-3 py-2 mb-3 bg-transparent border rounded border-[#6D6D6D] placeholder-[#D9D9D9] text-secondary"
         />
         <select
@@ -30,22 +47,10 @@
           <option value="inprogress">In Progress</option>
           <option value="done">Done</option>
         </select>
-        <div class="flex justify-end">
-          <button
-            id="closeModal"
-            type="button"
-            class="px-4 py-2 mr-2 text-secondary"
-          >
-            Cancel
-          </button>
-          <button type="submit" class="px-4 py-2 text-secondary">Create</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+      `;
+}
 
-<script src="../js/task-modal.js"></script>
-<script src="../js/create-task.js"></script>
-<script src="../js/delete-task.js"></script>
-<script src="../js/format-date.js"></script>
+function closeTaskModal() {
+  const modal = document.getElementById("editTaskModal");
+  modal.classList.add("hidden");
+}

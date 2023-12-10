@@ -1,4 +1,3 @@
-// Delete tweet
 async function deleteTask() {
   const frm = event.target;
   console.log(frm);
