@@ -4,6 +4,14 @@ async function createTask() {
     method: "POST",
     body: new FormData(frm),
   });
+  // Failure
+  if (!conn.ok) {
+    console.log("Cannot update");
+
+    return;
+  } else if (conn.ok) {
+    location.href = `/dashboard`;
+  }
   const data = await conn.json();
   console.log(data);
   const cookie = data.cookie;

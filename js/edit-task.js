@@ -7,7 +7,14 @@ async function editTask() {
     method: "PUT",
     body: new FormData(frmData),
   });
-
   const data = await conn.json();
   console.log(data);
+  // Failure
+  if (!conn.ok) {
+    console.log("Cannot update");
+
+    return;
+  } else if (conn.ok) {
+    location.href = `/dashboard`;
+  }
 }
