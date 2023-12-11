@@ -24,13 +24,36 @@
       <div class="mt-6 grid w-fit">
         <div class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2">
 
-            <p class="font-bold">Welcome @{{user_cookie["user_firstname"]}}</p>
+            <p class="font-bold">Welcome {{user_cookie["user_firstname"]}} {{user_cookie["user_lastname"]}}</p>
+            <button onclick="updateModal()" class="px-4 py-1.5 ml-auto bg-white rounded-full font-semibold text-black text-sm">Edit</button>
+            <section id="modal-update" class="hidden bg-grey rounded-2xl p-2 mx-auto w-1/3 fixed inset-0 z-100 max-h-fit my-auto">
+              <button id="closeModal" class="text-white" onclick="closeUpdateModal()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18 18l-6-6m0 0L6 6m6 6l6-6m-6 6l-6 6"/></svg></button>
+                  <div id="flex" class="flex flex-col items-center">
+                      <span class="text-white text-23 font-bold mt-4">Change first name</span>
+                      <input class="hidden" name="user_edit" value="{{user_cookie['user_firstname']}}"></input>
+                      <input type="text" name="userfirstname_update" placeholder="First name" class="rounded-xl p-2 mt-4 w-80" minlength="1" maxlength="50">
+                      <div id="errorMessageFirstname" class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
+                          <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
+                      </div>
+                      <span class="text-white text-23 font-bold mt-4">Change last name</span>
+                      <input class="hidden" name="user_edit" value="{{user_cookie['user_lastname']}}"></input>
+                      <input type="text" name="userlastname_update" placeholder="Last name" class="rounded-xl p-2 mt-4 w-80" minlength="1" maxlength="50">
+                      <div id="errorMessageLastname" class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
+                          <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
+                      </div>
+                      
+                      <span class="text-white text-23 font-bold mt-4">Change profile picture</span>
+                      <input class="rounded-xl p-2 mt-4 w-80 bg-white" type="file" name="avatar_update" id="avatarUpload" accept=".jpg, .jpeg, .png, .webp, .gif"/>
+                      <button onclick="update()" class="bg-black text-white rounded-3xl px-6 py-2 font-semibold w-80 mt-4 mb-8 hover:bg-opacity-90">Confirm</button>
+                  </div>
+          </section>
         </div>
-
       </div>
+
     </article>
     % end
   </section>
 </body>
+<script src="/js/update.js"></script>
 
 </html>

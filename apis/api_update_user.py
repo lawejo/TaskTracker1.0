@@ -3,6 +3,51 @@ import os
 import x
 from dotenv import load_dotenv
 
+
+@put("/update")
+def update():
+  try:
+    db = x.db()
+    user_cookie = x.user()
+    user_id = user_cookie["user_id"]
+    user_firstname = user_cookie["user_firstname"]
+    user_lastname = user_cookie["user_lastname"]
+    
+    new_user_firstname = x.update_user_firstname()
+    if user_firstname != new_user_firstname and new_user_firstname != "" and new_user_firstname is not None:
+      db.execute(f"UPDATE users SET user_firstname = ? WHERE user_firstname = ?", (new_user_firstname, user_firstname))
+      user_cookie["user_firstname"] = new_user_firstname
+
+    new_user_lastname = x.update_user_lastname()
+    if user_lastname != new_user_lastname and new_user_lastname != "" and new_user_lastname is not None:
+      db.execute(f"UPDATE users SET user_lastname = ? WHERE user_lastname = ?", (new_user_lastname, user_lastname))
+      user_cookie["user_lastname"] = new_user_lastname
+    
+    avatar = user_cookie["user_avatar"]
+    new_avatar = x.avatar_picture()
+    if avatar != user_id and new_avatar != "" and new_avatar is not None:
+      db.execute(f"UPDATE users SET user_avatar = ? WHERE user_id = ?", (new_avatar, user_id))
+      user_cookie['user_avatar'] = new_avatar
+
+    db.commit()
+
+    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
+    return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"], "new_avatar": user_cookie["user_avatar"], "new_email": user_cookie["user_email"], "new_birthday": user_cookie["user_birthday"]}
+
+  except Exception as ex:
+    print("Put route error her", ex)
+    return ex
+  
+  finally:
+    print("Database closed")
+    if "db" in locals(): db.close()
+
+
+
+####### separate api #########
+
+
+
 @put("/api-update-users-names")
 def update():
   try:
@@ -12,20 +57,20 @@ def update():
     user_firstname = user_cookie["user_firstname"]
     user_lastname = user_cookie["user_lastname"]
     
-    new_userfirstname = x.update_user_firstname()
-    if user_firstname != new_userfirstname and new_userfirstname != "" and new_userfirstname is not None:
-      db.execute(f"UPDATE users SET user_firstname = ? WHERE user_firstname = ?", (new_userfirstname, user_firstname))
-      user_cookie["user_firstname"] = new_userfirstname
+    new_user_firstname = x.update_user_firstname()
+    if user_firstname != new_user_firstname and new_user_firstname != "" and new_user_firstname is not None:
+      db.execute(f"UPDATE users SET user_firstname = ? WHERE user_firstname = ?", (new_user_firstname, user_firstname))
+      user_cookie["user_firstname"] = new_user_firstname
 
-    new_userlastname = x.update_user_lastname()
-    if user_lastname != new_userlastname and new_userlastname != "" and new_userlastname is not None:
-      db.execute(f"UPDATE users SET user_lastname = ? WHERE user_lastname = ?", (new_userlastname, user_lastname))
-      user_cookie["user_lastname"] = new_userlastname
+    new_user_lastname = x.update_user_lastname()
+    if user_lastname != new_user_lastname and new_user_lastname != "" and new_user_lastname is not None:
+      db.execute(f"UPDATE users SET user_lastname = ? WHERE user_lastname = ?", (new_user_lastname, user_lastname))
+      user_cookie["user_lastname"] = new_user_lastname
 
     db.commit()
 
     response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
-    return {"info": "Update succesful", "new_userfirstname": user_cookie["user_firstname"], "new_userlastname": user_cookie["user_lastname"]}
+    return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"]}
 
   except Exception as ex:
     print("Put route error her", ex)
@@ -94,7 +139,7 @@ def update():
   try:
     db = x.db()
     user_cookie = x.user()
-    user_id = user_cookie["user_birthday"]
+    user_id = user_cookie["user_id"]
     
     birthday = user_cookie["user_birthday"]
     new_birthday = x.validate_user_birthday()
