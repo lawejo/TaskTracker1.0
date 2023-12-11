@@ -14,6 +14,7 @@ def send_reset_email():
         db = x.db()
         user_email = request.forms.get("user_email")
         salt = bcrypt.gensalt()
+        print(user_email, "user_email")
         user_password = bcrypt.hashpw(x.validate_user_password().encode("utf-8"), salt)
         user = db.execute("SELECT * FROM users WHERE user_email = ? LIMIT 1", (user_email,)).fetchone()
         if user:
@@ -66,7 +67,7 @@ def password_resetting(user_email, user_firstname):
         import production
         url = os.getenv("PYTHONANYWHERE_URL") + "/reset-password"
     except:
-        url = "http://127.0.0.1:3000/reset-password"
+        url = "http://127.0.0.1:5858/reset-password"
     # Create the plain-text and HTML version of your message
     text = """\
                 Hi,
@@ -85,9 +86,9 @@ def password_resetting(user_email, user_firstname):
     
     <p style="font-size: 16px;">Hey! It seems you want to reset your password.</p>
     
-<a href={x.EMAIL_AHREF}/password-reset/{user_firstname} style="display: inline-block; background-color: #4285f4; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
+<a href={url}/{user_firstname} style="display: inline-block; background-color: #4285f4; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
 
-    <p style="font-size: 14px; margin-top: 20px;">If you can't click the link above, copy and paste the following URL into your browser: {x.EMAIL_AHREF}/password-reset/{user_firstname}</p>
+    <p style="font-size: 14px; margin-top: 20px;">If you can't click the link above, copy and paste the following URL into your browser: {url}/{user_firstname}</p>
 
     <p style="font-size: 14px; margin-top: 20px;">Thank you for choosing TaskTrackr. We're excited to have you here!</p>
 

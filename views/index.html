@@ -38,8 +38,20 @@
             class="mt-2 ml-auto italic transition ease-in-out w-fit text-detail hover:underline"
             >Or continue as a <span class="underline">guest</span></a
           >
+          <div class="flex flex-col gap-0.5 justify-start mb-4">
+            <div class="inline-flex">
+                <p class="text-detail">Forgot password?</p>&nbsp;
+                <p id="bottomResetPassword" onclick="showResetPassword()" class="text-white hover:underline cursor-pointer">Reset password</p>
+            </div>
+            <input id="passwordInput" class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80" type="password" placeholder="New password">
+            <input id="emailInput" class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80" type="email" placeholder="Email">
+            <button id="resetEmailButton" onclick="resetPassword()" class="hidden bg-detail text-white rounded-full px-6 py-2 font-semibold w-80 mt-4 hover:bg-opacity-90" type="submit">Send reset email</button>
+        </div>
         </div>
       </article>
     </section>
   </body>
 </html>
+
+<script src="/js/reset-password.js"></script>
+

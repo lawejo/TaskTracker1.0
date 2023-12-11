@@ -15,6 +15,7 @@ import routes.render_verification
 import apis.api_sign_up
 import apis.api_login
 import apis.api_logout
+import apis.api_reset_password
 
 ##############################
 ##### Så den kan finde vores JS
