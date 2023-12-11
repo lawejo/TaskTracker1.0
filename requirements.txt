@@ -1,3 +1,4 @@
 bottle==0.12.23
 bcrypt
 python-dotenv
+python-jose[cryptography]

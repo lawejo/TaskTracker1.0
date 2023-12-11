@@ -11,14 +11,15 @@ import routes.render_admin
 import routes.render_verification
 
 
-
 ## Apis
 import apis.api_sign_up
 import apis.api_login
 import apis.api_create_task
 import apis.api_delete_task
 import apis.api_edit_task
-
+import apis.api_delete_user
+##Misc
+import x
 
 ##############################
 ##### Så den kan finde vores JS
@@ -72,10 +73,11 @@ def _():
 
 
 #############################
-
-try:
-    import production
-    application = default_app()
-except Exception as ex:
+if x.local() == False:
     print("Running local server")
     run(host="127.0.0.1", port=5858, debug=True, reloader=True, )
+else:
+    import production
+    application = default_app()
+
+

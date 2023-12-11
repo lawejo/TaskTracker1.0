@@ -16,17 +16,21 @@
         <article class="mt-14">
             <p class="font-bold">USERS</p>
             %for user in users:
-            <div class="flex  [&>button]:px-8 [&>button]:py-4 [&>button]:ml-6 [&>button]:rounded-3xl mt-6 w-full">
-                <div class="flex min-w-[250px] items-center bg-detail px-4 rounded-3xl">
-                    <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
-                    <p class="h-fit pl-4">{{user['user_firstname']}} {{user['user_lastname']}}</p>
+            <form onsubmit="deleteUser(); return false">
+                <input type="text" class="hidden" name="user_id" value="{{user['user_id']}}">
+                <div class="flex  [&>button]:px-8 [&>button]:py-4 [&>button]:ml-6 [&>button]:rounded-3xl mt-6 w-full">
+                    <div class="flex min-w-[250px] items-center bg-detail px-4 rounded-3xl">
+                        <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
+                        <p class="h-fit pl-4">{{user['user_firstname']}} {{user['user_lastname']}}</p>
+                    </div>
+                    <button class="border border-gray-500">Edit</button>
+                    <button class="bg-red-500">Delete user</button>
                 </div>
-                <button class="border border-gray-500">Edit</button>
-                <button class="bg-red-500">Delete user</button>
-            </div>
+            </form>
             %end
         </article>
     </section>
 </body>
+<script src="../js/delete-user.js"></script>
 
 </html>

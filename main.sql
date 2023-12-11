@@ -1,9 +1,11 @@
 --------------------------------------------------
 -- Section USERS
--- Verified_at 0 = Not verified
--- Verified_at = Verified
+-- Verified_at  = 0 Not verified
+-- Verified_at  = 1 Verified
 -- user_inactive = 0 Not inactive 
 -- user_inactive = 1 Inactive/"Deleted" 
+-- user_role = 0 standard user
+-- user_role = 1 admin user
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_id                     TEXT    UNIQUE NOT NULL,

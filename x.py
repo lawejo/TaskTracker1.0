@@ -1,3 +1,6 @@
+from jwcrypto.common import json_encode
+from jwcrypto import jwk, jwe
+import json
 from bottle import request, response 
 import os
 import sqlite3
@@ -7,11 +10,10 @@ from dotenv import load_dotenv
 
 ##############################
 ##### Cookie
-
 # Load variables from .env file
 load_dotenv()
 COOKIE_SECRET = os.getenv("COOKIE_SECRET")
-
+JWE_SECRET = os.getenv("JWE_SECRET")
 ##############################
 ##### Database
 
@@ -31,7 +33,48 @@ def db():
         print(e)
     finally:
         pass
+##############################
+def local():
+    try:
+        import production
+        return True
+    except:
+          return False
+##############################
 
+
+def set_cookie_user(cookie_user):
+    cookie_user['user_password'] = cookie_user['user_password'].decode('utf-8')
+    cookie_user_string = json.dumps(cookie_user)
+    payload = cookie_user_string
+    jwetoken = jwe.JWE(payload.encode('utf-8'),
+                   json_encode({"alg": "A256KW","enc": "A256CBC-HS512"}))
+    JWE_DICT = json.loads(JWE_SECRET)
+    JWE_OBJECT = jwk.JWK(**JWE_DICT)
+    jwetoken.add_recipient(JWE_OBJECT)
+    enc = jwetoken.serialize()
+    if local() == False:
+        is_cookie_https = False
+    else:
+        is_cookie_https = True
+    response.set_cookie("user", enc, secret=COOKIE_SECRET,
+                            httponly=is_cookie_https)
+##############################
+def get_cookie_user():
+        cookie_user = request.get_cookie("user", secret=COOKIE_SECRET)
+        if not cookie_user:
+            return
+        jwetoken = jwe.JWE() 
+        print('*'*40)
+        print(f'FROM x.py = test')
+        print('*'*40)
+        jwetoken.deserialize(cookie_user)
+        JWE_DICT = json.loads(JWE_SECRET)
+        JWE_OBJECT = jwk.JWK(**JWE_DICT)
+        jwetoken.decrypt(JWE_OBJECT)     
+        user_cookie = jwetoken.payload
+        jsonload = json.loads(user_cookie)
+        return jsonload
 ##############################
 
 # Validation of task
