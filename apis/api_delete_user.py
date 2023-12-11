@@ -21,13 +21,13 @@ def _():
 
         if verify_target["COUNT(*)"] == 0:
             raise Exception(400, error_target)        
-        if not bcrypt.checkpw(admin_password.encode("utf-8"), user["user_password"]):
+        if not bcrypt.checkpw(admin_password.encode("utf-8"), user["user_password"].encode("utf-8")):
              raise Exception(400, error_admin)
-           
+        user=db.execute('SELECT * FROM users WHERE user_id =?',(target_user_id,)).fetchone()
         db.execute('DELETE FROM users WHERE user_id = ?',(target_user_id,)).fetchone()
     
         db.commit()
-        return {"info":"ok","message":"User deleted"}
+        return {"info":"ok","message":"User deleted","user":user}
         
     except Exception as e:
         print(e.args[1])
