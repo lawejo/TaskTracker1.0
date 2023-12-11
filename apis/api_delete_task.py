@@ -1,7 +1,7 @@
 from bottle import delete, request, response
 import x
 
-@delete('/api_delete_task')
+@delete('/api-delete-task')
 def delete_task():
     try:
         db = x.db()

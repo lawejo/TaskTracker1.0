@@ -1,7 +1,7 @@
 from bottle import put, request, response
 import x
 
-@put('/api_edit_task/<task_id>')
+@put('/api-edit-task/<task_id>')
 def edit_task(task_id):
     try:
         db = x.db()

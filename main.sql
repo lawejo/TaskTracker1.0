@@ -38,6 +38,7 @@ CREATE TABLE tasks(
     task_visibility             TEXT    INTEGER DEFAULT 0,
     task_image                  TEXT    NULL,
     task_assigned_users         TEXT    INTEGER DEFAULT 0,
+    task_status                 TEXT    NULL, 
     PRIMARY KEY(task_id) 
 )WITHOUT ROWID;
 
