@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output.css" />
+
+    <title>Admin</title>
+</head>
+
+<body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row text-white">
+    %include('navigation')
+    <section class=" mt-8 ml-8">
+        <h1 class="text-4xl">Welcome, Admin</h1>
+        <article class="mt-14">
+            <p class="font-bold">USERS</p>
+            %for user in users:
+            <div class="flex  [&>button]:px-8 [&>button]:py-4 [&>button]:ml-6 [&>button]:rounded-3xl mt-6 w-full">
+                <div class="flex min-w-[250px] items-center bg-detail px-4 rounded-3xl">
+                    <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
+                    <p class="h-fit pl-4">{{user['user_firstname']}} {{user['user_lastname']}}</p>
+                </div>
+                <button class="border border-gray-500">Edit</button>
+                <button class="bg-red-500">Delete user</button>
+            </div>
+            %end
+        </article>
+    </section>
+</body>
+
+</html>

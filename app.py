@@ -6,10 +6,12 @@ import routes.render_task
 import routes.render_verification
 import routes.render_sign_up
 import routes.render_login
-
-
-
+import routes.render_logout
+import routes.render_admin
 import routes.render_verification
+
+
+
 ## Apis
 import apis.api_sign_up
 import apis.api_login

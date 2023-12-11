@@ -14,7 +14,7 @@ CREATE TABLE users(
     user_password               TEXT    NOT NULL,
     user_tasks_created          TEXT    DEFAULT 0,
     user_tasks_assigned         TEXT    DEFAULT 0,
-    user_role                   TEXT    DEFAULT 1,
+    user_role                   TEXT    DEFAULT 0,
     user_verification_key       TEXT    NOT NULL,
     user_verified_at            TEXT    DEFAULT 0,
     user_inactivation_key       TEXT    DEFAULT 0,
@@ -22,6 +22,8 @@ CREATE TABLE users(
     user_reset_key               TEXT    DEFAULT 0,
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
+
+
 
 --------------------------------------------------
 --- Section TASKS
