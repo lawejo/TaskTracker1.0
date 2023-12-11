@@ -14,6 +14,7 @@ import routes.render_verification
 ## Apis
 import apis.api_sign_up
 import apis.api_login
+import apis.api_logout
 
 ##############################
 ##### Så den kan finde vores JS
