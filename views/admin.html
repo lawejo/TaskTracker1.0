@@ -15,43 +15,58 @@
         <h1 class="text-4xl">Welcome, Admin</h1>
         <article class="mt-14">
             <p class="font-bold">USERS</p>
+
+
             %for user in users:
             <div class="delete-user-parent" id="{{user['user_id']}}">
                 <input type="text" class="hidden" name="user_id" value="{{user['user_id']}}">
                 <div class="flex  [&>button]:px-8 [&>button]:py-4 [&>button]:ml-6 [&>button]:rounded-3xl mt-6 w-full">
                     <div class="flex min-w-[250px] items-center bg-detail px-4 rounded-3xl">
                         <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
-                        <p class="h-fit pl-4"><span
-                                class="user_firstname_{{user['user_id']}}">{{user['user_firstname']}}</span> <span
-                                class="user_lastname_{{user['user_id']}}">{{user['user_lastname']}}</span></p>
+                        <p class="h-fit pl-4">
+                            <span class="user_firstname_{{user['user_id']}}">{{user['user_firstname']}}
+                            </span>
+                            <span class="user_lastname_{{user['user_id']}}">{{user['user_lastname']}}
+                            </span>
+                        </p>
                     </div>
-                    <button class="border border-gray-500">Edit</button>
+                    <div class="modal-delete-user hidden absolute top-0 left-0 w-full h-full flex bg-gray-600/60">
+                        <section class=" bg-primary relative rounded-2xl p-2  w-1/3  z-100 max-h-fit my-auto mx-auto">
+                            <button id="closeModal" class="text-white" onclick="closeDeleteUserModal()"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="m18 18l-6-6m0 0L6 6m6 6l6-6m-6 6l-6 6" />
+                                </svg></button>
+                            <div class="flex flex-col items-center px-6">
+                                <p class="w-80 text-center">To confirm that you want to delete user
+                                    <span id="username_{{user['user_id']}}" class="font-bold">{{user['user_firstname']}}
+                                        {{user['user_lastname']}}</span>, please enter your
+                                    password
+                                </p>
+                                <span class="text-white text-23 font-bold mt-4">Admin Password</span>
+                                <form onsubmit="deleteUser(); return false">
+                                    <input type="text" name="target_id" value="{{user['user_id']}}" class="hidden">
+                                    <input type="password" name="admin_password" placeholder="Admin Password"
+                                        class="rounded-xl p-2 mt-4 w-80 text-black">
+                                    <button
+                                        class="bg-black text-white rounded-3xl px-6 py-2 font-semibold w-80 mt-4 mb-8 hover:bg-opacity-90">Confirm</button>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <button class="border border-gray-500">
+                        Edit
+                    </button>
                     <button onclick="openDeleteUserModal()" value="{{user['user_id']}}" class="bg-red-500">Delete
-                        user</button>
+                        user
+                    </button>
                 </div>
             </div>
-            <div class="modal-delete-user hidden absolute top-0 left-0 w-full h-full flex bg-gray-600/60">
-                <section class=" bg-primary relative rounded-2xl p-2  w-1/3  z-100 max-h-fit my-auto mx-auto">
-                    <button id="closeModal" class="text-white" onclick="closeDeleteUserModal()"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m18 18l-6-6m0 0L6 6m6 6l6-6m-6 6l-6 6" />
-                        </svg></button>
-                    <div id="flex" class="flex flex-col items-center">
-                        <p class="w-80 text-center">To confirm that you want to delete user <span
-                                class="username_{{user['user_id']}} font-bold"></span>, please enter your password</p>
-                        <span class="text-white text-23 font-bold mt-4">Admin Password</span>
-                        <form onsubmit="deleteUser(); return false">
-                            <input type="text" name="target_id" value="{{user['user_id']}}" class="hidden">
-                            <input type="password" name="admin_password" placeholder="Admin Password"
-                                class="rounded-xl p-2 mt-4 w-80 text-black">
-                            <button
-                                class="bg-black text-white rounded-3xl px-6 py-2 font-semibold w-80 mt-4 mb-8 hover:bg-opacity-90">Confirm</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
-            %end
+
+            % end
+
+
         </article>
     </section>
 
