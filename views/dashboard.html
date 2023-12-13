@@ -27,46 +27,34 @@
         <h1 class="font-semibold text-h1 text-secondary">Welcome, user</h1>
 
         <!-- Task Planner -->
-        <div class="grid grid-cols-1 mt-16 gap-44">
+        <div class="grid grid-cols-1 gap-4 mt-6">
           <div class="">
             <div class="flex items-center gap-4 text-secondary">
-              <h3 class="font-semibold text-h5">TO DO</h3>
-              <p>4</p>
+              <h3 class="mb-4 font-semibold text-h5">TO DO</h3>
             </div>
-            <div class="text-detail" id="taskToDo">
-              <div class="task-container">
-                <!-- Task details here -->
-                <!-- For each task -->
-              </div>
+            <div class="flex gap-4 text-detail" id="taskToDo">
+              %include("task", tasks=todos)
             </div>
           </div>
           <div class="">
             <div class="flex items-center gap-4 text-secondary">
-              <h3 class="font-semibold text-h5">IN PROGRESS</h3>
-              <p>4</p>
+              <h3 class="mb-4 font-semibold text-h5">IN PROGRESS</h3>
             </div>
-            <div class="text-detail" id="taskInProgress">
-              <div class="task-container">
-                <!-- Task details here -->
-                <!-- For each task -->
-              </div>
+            <div class="flex gap-4 mb-4 text-detail" id="taskInProgress">
+              %include("task", tasks=progtask)
             </div>
           </div>
           <div class="">
             <div class="flex items-center gap-4 text-secondary">
-              <h3 class="font-semibold text-h5">DONE</h3>
-              <p>4</p>
+              <h3 class="mb-4 font-semibold text-h5">DONE</h3>
             </div>
-            <div class="text-detail" id="taskDone">
-              <div class="task-container">
-                <!-- Task details here -->
-                <!-- For each task -->
-              </div>
+            <div class="flex gap-2 text-detail" id="taskDone">
+              %include("task", tasks=donetasks)
             </div>
           </div>
         </div>
       </div>
-      %include("task")
+
       <!-- Prettier ignore -->
     </main>
 

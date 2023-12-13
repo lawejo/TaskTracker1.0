@@ -9,6 +9,7 @@ import routes.render_login
 
 import routes.render_verification
 ## Apis
+import apis.filter_task
 import apis.api_sign_up
 import apis.api_login
 import apis.api_create_task

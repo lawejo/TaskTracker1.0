@@ -8,12 +8,24 @@ def show_tasks():
     try:
         db = x.db()  # Connect to your database
         
+        todo = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("todo",))
+        todos = todo.fetchall()
+        inprogress = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("inprogress",))
+        progtask = inprogress.fetchall()
+        donetask = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("done",))
+        donetasks = donetask.fetchall()
+   
+        
+
+
+
         # Fetch tasks from the database
         cursor = db.execute("SELECT * FROM tasks")
         tasks = cursor.fetchall()
+
         cursor.close()
         
-        return template("dashboard", tasks=tasks)  # Pass tasks to your template for rendering
+        return template("dashboard", tasks=tasks, todos=todos, progtask=progtask, donetasks=donetasks)  # Pass tasks to your template for rendering
         
     except Exception as ex:
         response.status = 500  # Internal Server Error

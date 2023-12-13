@@ -19,7 +19,7 @@ CREATE TABLE users(
     user_verified_at            TEXT    DEFAULT 0,
     user_inactivation_key       TEXT    DEFAULT 0,
     user_inactive               TEXT    DEFAULT 0,
-    user_reset_key               TEXT    DEFAULT 0,
+    user_reset_key              TEXT    DEFAULT 0,
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
 
