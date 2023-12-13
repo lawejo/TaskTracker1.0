@@ -46,3 +46,25 @@ async function createTask() {
   `
   );
 }
+
+// Function to sort tasks by status
+function sortTasksByStatus(status) {
+  const taskContainers = document.querySelectorAll(".task-container");
+
+  taskContainers.forEach((container) => {
+    const taskStatus = container
+      .querySelector(".task_status")
+      .textContent.trim();
+
+    if (taskStatus.toLowerCase() === status.toLowerCase()) {
+      container.style.display = "block";
+    } else {
+      container.style.display = "none";
+    }
+  });
+}
+const selectInput = document.querySelector('select[name="task_status"]');
+selectInput.addEventListener("change", (event) => {
+  const selectedStatus = event.target.value;
+  sortTasksByStatus(selectedStatus);
+});

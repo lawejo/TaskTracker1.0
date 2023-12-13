@@ -16,8 +16,11 @@
           Edit Task
         </button>
       </div>
-      <h3 class="my-2 text-secondary text-h4 task_title">{{ task["task_title"] }}</h3>
+      <h3 class="my-2 text-secondary text-h4 task_title">
+        {{ task["task_title"] }}
+      </h3>
       <p class="text-text">{{ task["task_description" ]}}</p>
+      <p class="text-xs text-detail task_status">{{ task["task_status"] }}</p>
       <div class="flex items-center justify-end gap-2 mt-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"

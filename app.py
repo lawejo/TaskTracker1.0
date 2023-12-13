@@ -7,8 +7,6 @@ import routes.render_verification
 import routes.render_sign_up
 import routes.render_login
 
-
-
 import routes.render_verification
 ## Apis
 import apis.api_sign_up
@@ -76,4 +74,4 @@ try:
     application = default_app()
 except Exception as ex:
     print("Running local server")
-    run(host="127.0.0.1", port=5858, debug=True, reloader=True, )
+    run(host="127.0.0.1", port=3000, debug=True, reloader=True, )
