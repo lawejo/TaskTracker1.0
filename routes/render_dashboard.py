@@ -1,6 +1,7 @@
 from bottle import get, template, response, request
 import traceback
 import x
+import os
 
 
 @get("/dashboard")
@@ -8,6 +9,10 @@ def show_tasks():
     try:
         db = x.db()  # Connect to your database
         
+        user_cookie = x.user()
+        user_cookie = request.get_cookie("user", secret=os.getenv('COOKIE_SECRET'))
+        if not user_cookie:
+            raise Exception("No cookie detected")
         todo = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("todo",))
         todos = todo.fetchall()
         inprogress = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("inprogress",))
@@ -25,7 +30,7 @@ def show_tasks():
 
         cursor.close()
         
-        return template("dashboard", tasks=tasks, todos=todos, progtask=progtask, donetasks=donetasks)  # Pass tasks to your template for rendering
+        return template("dashboard", tasks=tasks, todos=todos, progtask=progtask, donetasks=donetasks, user_cookie=user_cookie)  # Pass tasks to your template for rendering
         
     except Exception as ex:
         response.status = 500  # Internal Server Error

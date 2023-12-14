@@ -38,8 +38,11 @@ def _():
             is_cookie_https = True
         except:
             is_cookie_https = False
+        print(x.COOKIE_SECRET)
         response.set_cookie("user", user, secret=x.COOKIE_SECRET,
                             httponly=True)
+        print(x.COOKIE_SECRET)
+        print(response)
         return {"info": "ok", "message": "You will be redirected shortly."}
     except Exception as e:
         print(e)

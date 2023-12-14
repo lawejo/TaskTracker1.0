@@ -6,16 +6,15 @@ import routes.render_task
 import routes.render_verification
 import routes.render_sign_up
 import routes.render_login
+import routes.render_profile
 
 import routes.render_verification
 ## Apis
 import apis.filter_task
 import apis.api_sign_up
 import apis.api_login
-import apis.api_create_task
-import apis.api_delete_task
-import apis.api_edit_task
-
+import apis.api_logout
+import apis.api_reset_password
 
 ##############################
 ##### Så den kan finde vores JS

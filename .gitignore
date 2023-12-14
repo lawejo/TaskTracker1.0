@@ -6,6 +6,7 @@ lib
 .env 
 images
 pyvenv.cfg
+*.cfg
 .env 
 __pycache__
 Scripts
