@@ -9,8 +9,9 @@ function openTaskModal(button) {
   const taskDescription = taskContainer.querySelector(".text-text").textContent;
 
   console.log(taskId);
-  const modalTitle = modal.querySelector("h2");
-  modalTitle.textContent = taskTitle;
+  // const modalTitle = modal.querySelector("h2");
+  // console.log(modal.firstChild.firstChild);
+  // modalTitle.textContent = taskTitle;
 
   const editTaskForm = document.getElementById("editTaskForm");
   editTaskForm.innerHTML = `

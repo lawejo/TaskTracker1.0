@@ -20,9 +20,7 @@ def show_tasks():
         donetask = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("done",))
         donetasks = donetask.fetchall()
    
-        
-
-
+    
 
         # Fetch tasks from the database
         cursor = db.execute("SELECT * FROM tasks")
