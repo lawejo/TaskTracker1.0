@@ -1,7 +1,7 @@
 <div id="tasks">
   % for task in tasks:
   <div
-    class="p-4 rounded-md placeholder-content w-72 task-container bg-primary font-montserrat tasks"
+    class="p-2 rounded-md placeholder-content w-72 task-container bg-primary font-montserrat tasks"
   >
     <div class="">
       <div class="flex items-center justify-between">
@@ -12,9 +12,15 @@
             Delete
           </button>
         </form>
+        <button class="text-xs text-detail" onclick="openTaskModal(this)">
+          Edit Task
+        </button>
       </div>
-      <h3 class="my-2 text-secondary text-h4">{{ task["task_title"] }}</h3>
+      <h3 class="my-2 text-secondary text-h4 task_title">
+        {{ task["task_title"] }}
+      </h3>
       <p class="text-text">{{ task["task_description" ]}}</p>
+      <p class="text-xs text-detail task_status">{{ task["task_status"] }}</p>
       <div class="flex items-center justify-end gap-2 mt-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,13 +33,52 @@
             d="m10.95 13.7l-1.425-1.425q-.3-.3-.7-.3t-.7.3q-.3.3-.3.713t.3.712l2.125 2.15q.3.3.7.3t.7-.3l4.25-4.25q.3-.3.3-.712t-.3-.713q-.3-.3-.712-.3t-.713.3L10.95 13.7ZM12 22q-1.875 0-3.512-.712t-2.85-1.925q-1.213-1.213-1.925-2.85T3 13q0-1.875.713-3.512t1.924-2.85q1.213-1.213 2.85-1.925T12 4q1.875 0 3.513.713t2.85 1.925q1.212 1.212 1.925 2.85T21 13q0 1.875-.712 3.513t-1.925 2.85q-1.213 1.212-2.85 1.925T12 22Zm0-9ZM2.05 7.3q-.275-.275-.275-.7t.275-.7L4.9 3.05q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L3.45 7.3q-.275.275-.7.275t-.7-.275Zm19.9 0q-.275.275-.7.275t-.7-.275L17.7 4.45q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l2.85 2.85q.275.275.275.7t-.275.7ZM12 20q2.925 0 4.963-2.037T19 13q0-2.925-2.037-4.962T12 6Q9.075 6 7.038 8.038T5 13q0 2.925 2.038 4.963T12 20Z"
           />
         </svg>
-        <p class="text-text">{{ task["task_due_date" ]}}</p>
+        <p class="text-text task_due_date">{{ task["task_due_date" ]}}</p>
       </div>
     </div>
   </div>
 </div>
-% end
 
-<script src="../js/create-task.js"></script>
-<script src="../js/delete-task.js"></script>
-<script src="../js/format-date.js"></script>
+% end
+<div
+  id="editTaskModal"
+  class="fixed inset-0 z-50 flex items-center justify-center hidden overflow-auto bg-black bg-opacity-50 modal"
+>
+  % for task in tasks:
+
+  <div class="p-8 rounded shadow-lg w-96 md:w-3/5 bg-primary">
+    <h2 class="mb-4 font-bold text-h2 text-secondary"></h2>
+
+    <form id="editTaskForm">
+      <!-- ... -->
+    </form>
+    <div class="flex justify-end gap-4">
+      <button class="text-secondary" onclick="closeTaskModal()">Close</button>
+      <form method="PUT" onsubmit="editTask(); return false">
+        <input
+          type="hidden"
+          class="task_id"
+          name="task_id"
+          value="{{task['task_id']}}"
+        />
+        <button class="text-secondary" type="submit">Update</button>
+      </form>
+
+      <form method="DELETE" onsubmit="deleteTask(); return false">
+        <input type="hidden" name="task_id" value="{{task['task_id']}}" />
+        <button type="submit" class="text-xs delete-button text-detail">
+          Delete
+        </button>
+      </form>
+    </div>
+    % end
+  </div>
+
+  <script></script>
+  <script src="../js/create-task.js"></script>
+  <script src="../js/delete-task.js"></script>
+  <script src="../js/edit-task.js"></script>
+  <script src="../js/format-date.js"></script>
+  <script src="../js/task-modal.js"></script>
+  <script src="../js/edit-modal.js"></script>
+</div>

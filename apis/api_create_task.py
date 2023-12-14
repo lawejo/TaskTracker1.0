@@ -17,6 +17,8 @@ def create_task():
         task_due_date = request.forms.get("task_due_date")  # Should have a date instead 
         task_visibility = request.forms.get("task_visibility")
         task_image = ""
+        task_status = request.forms.get("task_status")
+
 
         # Upload task image
         # picture_upload = request.files.get("task_image")
@@ -34,9 +36,10 @@ def create_task():
         #     task_image = ""
 
         db.execute(
-            "INSERT INTO tasks (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, task_assigned_users) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, 0)  # 0 for task_assigned_users initially
+            "INSERT INTO tasks (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, task_assigned_users, task_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, 0, task_status)
         )
+
 
         db.commit()
 
@@ -49,6 +52,7 @@ def create_task():
             "task_due_date": task_due_date,
             "task_visibility": task_visibility,
             "task_image": task_image,
+            "task_status": task_status
         }
 
     except Exception as ex:
