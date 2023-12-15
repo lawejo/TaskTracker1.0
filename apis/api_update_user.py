@@ -29,9 +29,10 @@ def update():
       db.execute(f"UPDATE users SET user_avatar = ? WHERE user_id = ?", (new_avatar, user_id))
       user_cookie['user_avatar'] = new_avatar
 
-    db.commit()
+    x.set_cookie_user(user_cookie)
 
-    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
+
+    db.commit()
     return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"], "new_avatar": user_cookie["user_avatar"], "new_email": user_cookie["user_email"], "new_birthday": user_cookie["user_birthday"]}
 
   except Exception as ex:
@@ -52,7 +53,7 @@ def update():
 def update():
   try:
     db = x.db()
-    user_cookie = x.user()
+    user_cookie = x.get_cookie_user()
     user_id = user_cookie["user_id"]
     user_firstname = user_cookie["user_firstname"]
     user_lastname = user_cookie["user_lastname"]
@@ -69,7 +70,7 @@ def update():
 
     db.commit()
 
-    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
+    x.set_cookie_user(user_cookie)
     return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"]}
 
   except Exception as ex:
@@ -94,9 +95,8 @@ def update():
       db.execute(f"UPDATE users SET user_avatar = ? WHERE user_id = ?", (new_avatar, user_id))
       user_cookie['user_avatar'] = new_avatar
 
+    x.set_cookie_user(user_cookie)
     db.commit()
-
-    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
     return {"info": "Update succesful", "new_avatar": user_cookie["user_avatar"]}
 
   except Exception as ex:
@@ -120,10 +120,8 @@ def update():
     if email != user_id and new_email != "" and new_email is not None:
       db.execute(f"UPDATE users SET user_email = ? WHERE user_id = ?", (new_email, user_id))
       user_cookie['user_email'] = new_email
-
+    x.set_cookie_user(user_cookie)
     db.commit()
-
-    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
     return {"info": "Update succesful", "new_email": user_cookie["user_email"]}
 
   except Exception as ex:
@@ -147,9 +145,8 @@ def update():
       db.execute(f"UPDATE users SET user_birthday = ? WHERE user_id = ?", (new_birthday, user_id))
       user_cookie['user_birthday'] = new_birthday
 
+    x.set_cookie_user(user_cookie)
     db.commit()
-
-    response.set_cookie("user", user_cookie, secret=os.getenv('COOKIE_SECRET'), httponly=True)
     return {"info": "Update succesful", "new_birthday": user_cookie["user_birthday"]}
 
   except Exception as ex:

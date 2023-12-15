@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 def _():
     try:
         db = x.db()
-        user_cookie = x.user()
-        user_cookie = request.get_cookie("user", secret=os.getenv('COOKIE_SECRET'))
+        user_cookie = x.get_cookie_user()
         if not user_cookie:
             raise Exception("No cookie detected")
         return template("profile", user_cookie = user_cookie)

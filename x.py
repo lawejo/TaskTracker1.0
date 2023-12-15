@@ -65,10 +65,7 @@ def get_cookie_user():
         cookie_user = request.get_cookie("user", secret=COOKIE_SECRET)
         if not cookie_user:
             return
-        jwetoken = jwe.JWE() 
-        print('*'*40)
-        print(f'FROM x.py = test')
-        print('*'*40)
+        jwetoken = jwe.JWE()
         jwetoken.deserialize(cookie_user)
         JWE_DICT = json.loads(JWE_SECRET)
         JWE_OBJECT = jwk.JWK(**JWE_DICT)
