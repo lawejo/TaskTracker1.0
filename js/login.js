@@ -11,6 +11,9 @@ async function submitSignUp() {
     console.log(data);
     data.info === 'ok' ? succes() : error();
     function succes() {
+
+        feedbackElement.parentElement.classList.contains('bg-red-600') ? feedbackElement.parentElement.classList.remove('bg-red-600') : ''
+
         feedbackElement.parentElement.classList.add('bg-green-500');
         feedbackElement.parentElement.classList.remove('hidden');
         feedbackElement.innerHTML = data.message

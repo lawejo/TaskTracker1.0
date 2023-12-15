@@ -49,7 +49,6 @@ async function createTaskAndFilter() {
 async function filterTask() {
   try {
     const filterTag = document.getElementById("filterTag").value;
-
     // Fetch tasks based on selected filter
     const conn = await fetch(`/filter_task?task_status=${filterTag}`, {
       method: "GET",

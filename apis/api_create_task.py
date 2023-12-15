@@ -20,21 +20,6 @@ def create_task():
         task_status = request.forms.get("task_status")
 
 
-        # Upload task image
-        # picture_upload = request.files.get("task_image")
-        # if not picture_upload.filename == "empty":
-        #     name, ext = os.path.splitext(picture_upload.filename)
-        #     if ext not in (".png", ".jpg", ".jpeg"):
-        #         response.status = 400
-        #         return "Picture not allowed"
-        
-        #     picture_name = str(uuid.uuid4().hex)
-        #     picture_name = picture_name + ext
-        #     picture_upload.save(f"picture_upload/{picture_name}")
-        #     task_image = picture_name
-        # else: 
-        #     task_image = ""
-
         db.execute(
             "INSERT INTO tasks (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, task_assigned_users, task_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (task_id, task_created_at, task_title, task_description, task_due_date, task_visibility, task_image, 0, task_status)

@@ -1,9 +1,11 @@
 --------------------------------------------------
 -- Section USERS
--- Verified_at 0 = Not verified
--- Verified_at = Verified
+-- Verified_at  = 0 Not verified
+-- Verified_at  = 1 Verified
 -- user_inactive = 0 Not inactive 
 -- user_inactive = 1 Inactive/"Deleted" 
+-- user_role = 0 standard user
+-- user_role = 1 admin user
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_id                     TEXT    UNIQUE NOT NULL,
@@ -14,7 +16,7 @@ CREATE TABLE users(
     user_password               TEXT    NOT NULL,
     user_tasks_created          TEXT    DEFAULT 0,
     user_tasks_assigned         TEXT    DEFAULT 0,
-    user_role                   TEXT    DEFAULT 1,
+    user_role                   TEXT    DEFAULT 0,
     user_verification_key       TEXT    NOT NULL,
     user_verified_at            TEXT    DEFAULT 0,
     user_inactivation_key       TEXT    DEFAULT 0,
@@ -24,6 +26,8 @@ CREATE TABLE users(
     user_birthday               TEXT    DEFAULT "",
     PRIMARY KEY(user_id)
 ) WITHOUT ROWID;
+
+
 
 --------------------------------------------------
 --- Section TASKS

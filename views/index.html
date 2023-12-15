@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/output.css" />
 
-    <title>TaskTracker</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/output.css" />
 
-  <body class="text-white bg-black">
-    <section
-      class="flex [&>article]:w-full h-screen [&>article]:flex [&>article]:flex-col [&>article]:justify-center px-6"
-    >
-      <article class="items-center">
-        <a href="/"
-          ><img src="../assets/logo.svg" class="w-full h-full" alt=""
-        /></a>
-      </article>
-      <article>
-        <p class="font-bold">TaskTracker</p>
-        <h1 class="text-h1">Turning chaos into order, one task at a time.</h1>
-        <div class="grid mt-6 w-fit">
-          <div
-            class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2"
-          >
-            <a href="/sign-up" class="text-black bg-primary hover:bg-secondary"
-              >Create an account</a
-            >
-            <a
-              href="/login"
-              class="transition duration-300 ease-in-out hover:bg-primary hover:text-black"
-              >Log in</a
-            >
+  <title>TaskTracker</title>
+</head>
+
+<body class="text-white bg-black">
+  <section
+    class="flex [&>article]:w-full h-screen [&>article]:flex [&>article]:flex-col [&>article]:justify-center px-6">
+    <article class="items-center">
+      <a href="/"><img src="../assets/logo.svg" class="w-full h-full" alt="" /></a>
+    </article>
+    <article>
+      <p class="font-bold">TaskTracker</p>
+      <h1 class="text-h1">Turning chaos into order, one task at a time.</h1>
+      <div class="grid mt-6 w-fit">
+        <div class="[&>a]:border [&>a]:border-white [&>a]:rounded-xl [&>a]:px-4 [&>a]:py-2">
+          <a href="/sign-up" class="text-black bg-secondary hover:bg-secondary/50 ease-in-out transition">Create an
+            account</a>
+          <a href="/login" class="transition duration-300 ease-in-out hover:bg-primary">Log in</a>
+        </div>
+        <a href="#" class="mt-2 ml-auto italic transition ease-in-out w-fit text-detail hover:underline">Or continue as
+          a <span class="underline">guest</span></a>
+        <div class="flex flex-col gap-0.5 justify-start mb-4">
+          <div class="inline-flex">
+            <p class="text-detail">Forgot password?</p>&nbsp;
+            <p id="bottomResetPassword" onclick="showResetPassword()" class="text-white hover:underline cursor-pointer">
+              Reset password</p>
           </div>
-          <a
-            href="#"
-            class="mt-2 ml-auto italic transition ease-in-out w-fit text-detail hover:underline"
-            >Or continue as a <span class="underline">guest</span></a
-          >
-          <div class="flex flex-col gap-0.5 justify-start mb-4">
-            <div class="inline-flex">
-                <p class="text-detail">Forgot password?</p>&nbsp;
-                <p id="bottomResetPassword" onclick="showResetPassword()" class="text-white hover:underline cursor-pointer">Reset password</p>
-            </div>
-            <input id="passwordInput" class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80" type="password" placeholder="New password">
-            <input id="emailInput" class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80" type="email" placeholder="Email">
-            <button id="resetEmailButton" onclick="resetPassword()" class="hidden bg-detail text-white rounded-full px-6 py-2 font-semibold w-80 mt-4 hover:bg-opacity-90" type="submit">Send reset email</button>
+          <input id="passwordInput"
+            class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80"
+            type="password" placeholder="New password">
+          <input id="emailInput"
+            class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80"
+            type="email" placeholder="Email">
+          <button id="resetEmailButton" onclick="resetPassword()"
+            class="hidden bg-detail text-white rounded-full px-6 py-2 font-semibold w-80 mt-4 hover:bg-opacity-90"
+            type="submit">Send reset email</button>
         </div>
-        </div>
-      </article>
-    </section>
-  </body>
+      </div>
+    </article>
+  </section>
+</body>
+
 </html>
 
 <script src="/js/reset-password.js"></script>
-

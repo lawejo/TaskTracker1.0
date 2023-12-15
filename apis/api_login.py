@@ -8,41 +8,29 @@ def _():
     try:
         error_message = "Invalid credentials"
         db = x.db()
-        user_email = request.forms.get('user_email')
-        user_password = request.forms.get('user_password')
+        user_email = request.forms.get('user_email').strip()
+        user_password = request.forms.get('user_password').strip()
        
-        user = db.execute(
+        cookie_user = db.execute(
                 "SELECT * FROM users WHERE user_email = ?", (user_email,)).fetchone()
      
     
-        if not user:
+        if not cookie_user:
             raise Exception(400, error_message)
-        
-        if not bcrypt.checkpw(user_password.encode("utf-8"), user["user_password"]):
+  
+        if not bcrypt.checkpw(user_password.encode("utf-8"), cookie_user["user_password"]):
              raise Exception(400, error_message)
-
-        if user["user_verified_at"] == "0":
+    
+        if cookie_user["user_verified_at"] == "0":
             raise Exception(
                 "Your account has yet to be verified, please check your email too complete your account.")
-        print('*'*40)
-        print(f'FROM api_login.py = {x.COOKIE_SECRET}')
-        print('*'*40)
  
-        if user["user_inactive"] == "1":
-            print(user)
+        if cookie_user["user_inactive"] == "1":
+            print(cookie_user)
             raise Exception(
                 "It appears you deleted your account. Contact support to have your account retrieved.")
-        try:
-
-            import production
-            is_cookie_https = True
-        except:
-            is_cookie_https = False
-        print(x.COOKIE_SECRET)
-        response.set_cookie("user", user, secret=x.COOKIE_SECRET,
-                            httponly=True)
-        print(x.COOKIE_SECRET)
-        print(response)
+   
+        x.set_cookie_user(cookie_user)
         return {"info": "ok", "message": "You will be redirected shortly."}
     except Exception as e:
         print(e)
