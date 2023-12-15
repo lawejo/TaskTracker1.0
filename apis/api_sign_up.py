@@ -25,6 +25,8 @@ def _():
         user_inactivation_key = str(uuid.uuid4()).replace("-", "")
         user_inactive = 0
         user_reset_key = str(uuid.uuid4()).replace("-", "")
+        user_avatar = 0
+        user_birthday = ""
         user ={
             "user_id": user_id,
             "user_created_at": user_created_at,
@@ -39,13 +41,16 @@ def _():
             "user_verified_at": user_verified_at,
             "user_inactivation_key": user_inactivation_key,
             "user_inactive": user_inactive,
-            "user_reset_key": user_reset_key
+            "user_reset_key": user_reset_key,
+            "user_avatar": user_avatar,
+            "user_birthday": user_birthday
         }
      
         values = ""
         for key in user:
             values += f":{key},"
         values = values.rstrip(",")
+        print(values)
         total_rows_inserted = db.execute(
             f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1:

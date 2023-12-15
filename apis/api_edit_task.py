@@ -1,12 +1,13 @@
 from bottle import put, request, response
 import x
 
-@put('/api-edit-task/<task_id>')
-def edit_task(task_id):
+@put('/api-edit-task')
+def edit_task():
     try:
         db = x.db()
 
         # Retrieve task details from the request body
+        task_id = request.forms.get("task_id")
         task_title = request.forms.get("task_title")
         task_description = request.forms.get("task_description")
         task_due_date = request.forms.get("task_due_date")

@@ -6,6 +6,7 @@ import os
 import sqlite3
 import pathlib
 import re
+import uuid
 from dotenv import load_dotenv
 
 ##############################
@@ -96,7 +97,7 @@ try:
     EMAIL_AHREF = 'pythonanywhere'
 except Exception as ex:
     print("Running local server")
-    EMAIL_AHREF = "http://127.0.0.1:3000"
+    EMAIL_AHREF = "http://127.0.0.1:5858"
 
 
 ##############################
@@ -182,3 +183,51 @@ def validate_user_confirm_password():
     if user_confirm_password != user_password:
         raise Exception(error)
     return user_confirm_password
+
+USER_BIRTHDAY_REGEX = "^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$"
+def validate_user_birthday():
+    error = f"Date is wrong, or you are not using periods in your dates"
+    user_birthday = request.forms.get("user_birthday", "")
+    request.forms.user_birthday = request.forms.user_birthday.strip()
+    if not re.match(USER_BIRTHDAY_REGEX, request.forms.user_birthday):
+        raise Exception(error)
+    return user_birthday
+
+
+
+def update_user_firstname():
+  error = f"Your username has to be at least {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} lowercased english letters"
+  user_firstname = request.forms.get("user_firstname", "")
+  user_firstname = user_firstname.strip()
+  if user_firstname is None or user_firstname == "":
+    return user_firstname
+  if not re.match(USER_FIRSTNAME_REGEX, user_firstname): raise Exception(400, error)
+  return user_firstname
+
+def update_user_lastname():
+  error = f"Your username has to be at least {USER_LASTNAME_MIN} to {USER_LASTNAME_MAX} lowercased english letters"
+  user_lastname = request.forms.get("user_lastname", "")
+  user_lastname = user_lastname.strip()
+  if user_lastname is None or user_lastname == "":
+    return user_lastname
+  if not re.match(USER_LASTNAME_REGEX, user_lastname): raise Exception(400, error)
+  return user_lastname
+
+def avatar_picture():
+  error = "Picture file not valid"
+  picture = request.files.get("avatar", "")
+  if picture is None or picture == "":
+    return picture
+  name, ext = os.path.splitext(picture.filename)
+  if ext not in (".png", ".jpg", ".jpeg", ".webp", ".gif"):
+    response.status = 400
+    raise Exception(error)
+  picture_name = str(uuid.uuid4().hex)
+  picture_name = picture_name + ext
+  try:
+    import production
+    picture.save(f"/home/fhbproject/Twitter/images/avatars/{picture_name}")
+  except:
+    picture.save(f"images/avatars/{picture_name}")
+  finally:
+    return picture_name

@@ -16,4 +16,13 @@ async function logout() {
     function error() {
         console.log(data.message);
     }
+    // function userLogout() {
+    //     fetch('/logout', {
+    //     method: 'POST',
+    //     })
+
+    //     window.location.href = '/'
+
+    //     closeLogout()
+
 }
