@@ -1,9 +1,6 @@
 from bottle import get, template, response, request
 import traceback
 import x
-from jwcrypto.common import json_encode
-from jwcrypto import jwk, jwe
-import json
 ##############################
 
 @get("/admin")

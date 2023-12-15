@@ -10,6 +10,8 @@
 </head>
 
 <body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row text-white">
+
+    %include('comp_feedback')
     %include('navigation')
     <section class=" mt-8 ml-8">
         <h1 class="text-4xl">Welcome, Admin</h1>
@@ -18,10 +20,10 @@
 
 
             %for user in users:
-            <div class="delete-user-parent" id="{{user['user_id']}}">
+            <div class="" id="delete-user-parent-{{user['user_id']}}">
                 <input type="text" class="hidden" name="user_id" value="{{user['user_id']}}">
                 <div class="flex  [&>button]:px-8 [&>button]:py-4 [&>button]:ml-6 [&>button]:rounded-3xl mt-6 w-full">
-                    <div class="flex min-w-[250px] items-center bg-detail px-4 rounded-3xl">
+                    <div class="flex min-w-[250px] items-center bg-primary px-4 rounded-3xl">
                         <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
                         <p class="h-fit pl-4">
                             <span class="user_firstname_{{user['user_id']}}">{{user['user_firstname']}}
@@ -45,7 +47,7 @@
                                     password
                                 </p>
                                 <span class="text-white text-23 font-bold mt-4">Admin Password</span>
-                                <form onsubmit="deleteUser(); return false">
+                                <form onsubmit="deleteUser(); return false" class="items-center flex flex-col">
                                     <input type="text" name="target_id" value="{{user['user_id']}}" class="hidden">
                                     <input type="password" name="admin_password" placeholder="Admin Password"
                                         class="rounded-xl p-2 mt-4 w-80 text-black">
