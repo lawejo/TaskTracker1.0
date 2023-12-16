@@ -24,6 +24,8 @@ import apis.api_create_task
 import apis.api_delete_task
 import apis.api_edit_task
 import apis.api_delete_user
+import apis.api_admin_update_user
+import apis.api_update_user
 ##Misc
 import x
 # import apis.api_logout

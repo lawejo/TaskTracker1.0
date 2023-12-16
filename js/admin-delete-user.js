@@ -27,9 +27,8 @@ async function deleteUser() {
 }
 
 function openDeleteUserModal() {
-    deleteUserModal = event.target.previousElementSibling.previousElementSibling
+    deleteUserModal = event.target.closest('div').children[1]
     deleteUserModal.classList.remove('hidden')
-    const userId = event.target.value
 }
 function closeDeleteUserModal() {
     deleteUserModal.classList.add("hidden")

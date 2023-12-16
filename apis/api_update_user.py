@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 def update():
   try:
     db = x.db()
-    user_cookie = x.user()
+    user_cookie = x.get_cookie_user()
     user_id = user_cookie["user_id"]
     user_firstname = user_cookie["user_firstname"]
     user_lastname = user_cookie["user_lastname"]
-    
+
     new_user_firstname = x.update_user_firstname()
     if user_firstname != new_user_firstname and new_user_firstname != "" and new_user_firstname is not None:
       db.execute(f"UPDATE users SET user_firstname = ? WHERE user_firstname = ?", (new_user_firstname, user_firstname))
@@ -22,13 +22,12 @@ def update():
     if user_lastname != new_user_lastname and new_user_lastname != "" and new_user_lastname is not None:
       db.execute(f"UPDATE users SET user_lastname = ? WHERE user_lastname = ?", (new_user_lastname, user_lastname))
       user_cookie["user_lastname"] = new_user_lastname
-    
+
     avatar = user_cookie["user_avatar"]
     new_avatar = x.avatar_picture()
     if avatar != user_id and new_avatar != "" and new_avatar is not None:
       db.execute(f"UPDATE users SET user_avatar = ? WHERE user_id = ?", (new_avatar, user_id))
       user_cookie['user_avatar'] = new_avatar
-
     x.set_cookie_user(user_cookie)
 
 
