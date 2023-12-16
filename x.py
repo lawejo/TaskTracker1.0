@@ -35,6 +35,11 @@ def db():
     finally:
         pass
 ##############################
+keys_list = ['user_password', 'user_verified_at', 'user_reset_key',
+             'user_inactive', 'user_verification_key', 'user_inactivation_key']
+
+
+##############################
 def local():
     try:
         import production
@@ -45,7 +50,9 @@ def local():
 
 
 def set_cookie_user(cookie_user):
-    cookie_user['user_password'] = cookie_user['user_password'].decode('utf-8')
+    # Fjerner unødvendig information fra user_cookie
+    [cookie_user.pop(key) for key in keys_list]
+    # cookie_user['user_password'] = cookie_user['user_password'].decode('utf-8')
     cookie_user_string = json.dumps(cookie_user)
     payload = cookie_user_string
     jwetoken = jwe.JWE(payload.encode('utf-8'),
@@ -102,23 +109,23 @@ except Exception as ex:
 
 USER_FIRSTNAME_MIN = 1
 USER_FIRSTNAME_MAX = 50
-USER_FIRSTNAME_REGEX = "^[a-zA-Z-9_]*$"
+USER_FIRSTNAME_REGEX = "^[a-zA-Z0-9_øæåØÆÅ]*$"
 
 def validate_user_firstname():
     error = f"Firstname must {USER_FIRSTNAME_MIN} to {USER_FIRSTNAME_MAX} letters or numbers from 0 to 9"
     request.forms.user_firstname = request.forms.user_firstname.strip()
     if len(request.forms.user_firstname) < USER_FIRSTNAME_MIN:
-        raise Exception(error)
+        raise Exception(400, error)
     if len(request.forms.user_firstname) > USER_FIRSTNAME_MAX:
         raise Exception(error)
     if not re.match(USER_FIRSTNAME_REGEX, request.forms.user_firstname):
-        raise Exception(error)
+        raise Exception(400, error)
     return request.forms.user_firstname
 
 
 USER_LASTNAME_MIN = 1
 USER_LASTNAME_MAX = 50
-USER_LASTNAME_REGEX = "^[a-zA-Z-9_]*$"
+USER_LASTNAME_REGEX = "^[a-zA-Z0-9_øæåØÆÅ]*$"
 
 # english letter only and numbers from 0 to 9
 
@@ -127,11 +134,11 @@ def validate_user_lastname():
     error = f"Your lastname must {USER_LASTNAME_MIN} to {USER_LASTNAME_MAX} letters or numbers from 0 to 9. No spaces"
     request.forms.user_lastname = request.forms.user_lastname.strip()
     if len(request.forms.user_lastname) < USER_LASTNAME_MIN:
-        raise Exception(error)
+        raise Exception(400, error)
     if len(request.forms.user_lastname) > USER_LASTNAME_MAX:
-        raise Exception(error)
+        raise Exception(400, error)
     if not re.match(USER_LASTNAME_REGEX, request.forms.user_lastname):
-        raise Exception(error)
+        raise Exception(400,error)
     return request.forms.user_lastname
 
 
@@ -144,13 +151,13 @@ def validate_user_email():
     error = f"Your email is invalid, it must be between {USER_EMAIL_MIN} and {USER_EMAIL_MAX}"
     request.forms.user_email = request.forms.user_email.strip()
     if len(request.forms.user_email) < USER_EMAIL_MIN:
-        raise Exception(error)
+        raise Exception(400, error)
 
     if len(request.forms.user_email) > USER_EMAIL_MAX:
-        raise Exception(error)
+        raise Exception(400, error)
 
     if not re.match(USER_EMAIL_REGEX, request.forms.user_email):
-        raise Exception(error)
+        raise Exception(400, error)
     return request.forms.user_email
 
 
@@ -165,9 +172,9 @@ def validate_user_password():
     user_password = user_password.strip()
     request.forms.user_password = request.forms.user_password.strip()
     if len(user_password) < USER_PASSWORD_MIN:
-        raise Exception(error)
+        raise Exception(400, error)
     if len(user_password) > USER_PASSWORD_MAX:
-        raise Exception(error)
+        raise Exception(400, error)
     return user_password
 
 
@@ -178,7 +185,7 @@ def validate_user_confirm_password():
     user_password = user_password.strip()
     user_confirm_password = user_confirm_password.strip()
     if user_confirm_password != user_password:
-        raise Exception(error)
+        raise Exception(400,error)
     return user_confirm_password
 
 USER_BIRTHDAY_REGEX = "^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$"
