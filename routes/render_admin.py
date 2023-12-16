@@ -8,11 +8,11 @@ def render_index():
 
     try:
         db = x.db()
-        user = x.get_cookie_user()
-        if not user or not user['user_role'] == '1':
+        user_cookie = x.get_cookie_user()
+        if not user_cookie or not user_cookie['user_role'] == '1':
             return template("access-denied", message='Access denied')
         users = db.execute("SELECT * FROM users").fetchall()
-        return template("admin", users=users)
+        return template("admin", users=users, user_cookie=user_cookie)
     except Exception as ex:
         traceback.print_exc()
         response.status = 500
