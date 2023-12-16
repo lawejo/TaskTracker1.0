@@ -50,8 +50,9 @@ def local():
 
 
 def set_cookie_user(cookie_user):
-    # Fjerner unødvendig information fra user_cookie
-    [cookie_user.pop(key) for key in keys_list]
+    if 'user_password' in cookie_user:
+            # Fjerner unødvendig information fra user_cookie
+            [cookie_user.pop(key) for key in keys_list]
     # cookie_user['user_password'] = cookie_user['user_password'].decode('utf-8')
     cookie_user_string = json.dumps(cookie_user)
     payload = cookie_user_string

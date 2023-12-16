@@ -12,33 +12,24 @@ def update():
     user_id = user_cookie["user_id"]
     user_firstname = user_cookie["user_firstname"]
     user_lastname = user_cookie["user_lastname"]
-    print('*'*40)
-    print(f'FROM api_update_user.py 1')
-    print('*'*40)
+
     new_user_firstname = x.update_user_firstname()
     if user_firstname != new_user_firstname and new_user_firstname != "" and new_user_firstname is not None:
       db.execute(f"UPDATE users SET user_firstname = ? WHERE user_firstname = ?", (new_user_firstname, user_firstname))
       user_cookie["user_firstname"] = new_user_firstname
-    print('*'*40)
-    print(f'FROM api_update_user.py 2')
-    print('*'*40)
+
     new_user_lastname = x.update_user_lastname()
     if user_lastname != new_user_lastname and new_user_lastname != "" and new_user_lastname is not None:
       db.execute(f"UPDATE users SET user_lastname = ? WHERE user_lastname = ?", (new_user_lastname, user_lastname))
       user_cookie["user_lastname"] = new_user_lastname
-    print('*'*40)
-    print(f'FROM api_update_user.py 3')
-    print('*'*40)
+
     avatar = user_cookie["user_avatar"]
     new_avatar = x.avatar_picture()
     if avatar != user_id and new_avatar != "" and new_avatar is not None:
       db.execute(f"UPDATE users SET user_avatar = ? WHERE user_id = ?", (new_avatar, user_id))
       user_cookie['user_avatar'] = new_avatar
-
     x.set_cookie_user(user_cookie)
-    print('*'*40)
-    print(f'FROM api_update_user.py = {user_cookie}')
-    print('*'*40)
+
 
     db.commit()
     return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"], "new_avatar": user_cookie["user_avatar"], "new_email": user_cookie["user_email"], "new_birthday": user_cookie["user_birthday"]}
