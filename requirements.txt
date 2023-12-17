@@ -1,4 +1,4 @@
-1bottle==0.12.23
+bottle==0.12.23
 bcrypt
 python-dotenv
 jwcrypto
