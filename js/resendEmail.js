@@ -1,13 +1,15 @@
 "use strict"
 const feedbackElement = document.querySelector('.feedback-element');
-async function submitSignUp() {
 
-    const frm = event.target // the form
-    const conn = await fetch("/api-login", {
+async function resendEmailAsync() {
+    console.log(`aa`);
+    const frm = event.target;
+    console.log(frm);
+    const response = await fetch("/api-resend-email", {
         method: "POST",
         body: new FormData(frm)
-    })
-    const data = await conn.json() // to get plain text
+    });
+    const data = await response.json();
     console.log(data);
     data.info === 'ok' ? succes() : error();
     function succes() {
@@ -16,7 +18,7 @@ async function submitSignUp() {
         feedbackElement.parentElement.classList.add('bg-green-500');
         feedbackElement.parentElement.classList.remove('hidden');
         feedbackElement.innerHTML = data.message
-        setTimeout(() => { location.href = `/dashboard` }, 1500)
+        setTimeout(() => { location.href = `/` }, 3000)
     }
     function error() {
         feedbackElement.parentElement.classList.add('bg-red-600');
@@ -24,7 +26,9 @@ async function submitSignUp() {
         feedbackElement.innerHTML = data.errortype
 
     }
+}
+const resendEmailElements = [...document.querySelectorAll('.reveal')]
+function revealEmailInput() {
+    resendEmailElements.forEach((el) => el.classList.remove('hidden'))
+}
 
-
-
-};
