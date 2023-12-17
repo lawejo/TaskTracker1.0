@@ -66,11 +66,6 @@ async function filterTask() {
     const taskInProgressElement = document.getElementById("taskInProgress");
     const taskDoneElement = document.getElementById("taskDone");
 
-    // Clear existing tasks
-    taskToDoElement.innerHTML = "";
-    taskInProgressElement.innerHTML = "";
-    taskDoneElement.innerHTML = "";
-
     // Append tasks to the respective sections based on their status
     data.results.forEach((task) => {
       // Assuming 'data.results' contains the tasks
