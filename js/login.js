@@ -1,6 +1,6 @@
 "use strict"
 const feedbackElement = document.querySelector('.feedback-element');
-async function submitSignUp() {
+async function login() {
 
     const frm = event.target // the form
     const conn = await fetch("/api-login", {

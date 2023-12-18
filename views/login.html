@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/output.css" />
-
-    <title>TaskTracker</title>
-</head>
+%include('head', title="Login, TaskTracker")
 
 <body class="bg-black text-white">
     %include('comp_feedback')
@@ -23,7 +16,7 @@
 
             <h1 class="text-h1 mb-6">Log In to your account.</h1>
 
-            <form class="flex flex-col max-w-md " onsubmit="submitSignUp(); return false">
+            <form class="flex flex-col max-w-md " onsubmit=" login(); return false">
 
                 <label for="user_email">Email</label>
                 <input id="user_email" class=" h-10 rounded-2xl pl-2 w-full  text-white bg-black border border-white/30"

@@ -11,6 +11,7 @@ def show_tasks():
         
         
         user_cookie = x.get_cookie_user()
+
         if not user_cookie:
             raise Exception("No cookie detected")
         todo = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("todo",))
@@ -27,13 +28,13 @@ def show_tasks():
         tasks = cursor.fetchall()
 
         cursor.close()
-        
+        x.set_headers()
         return template("dashboard", tasks=tasks, todos=todos, progtask=progtask, donetasks=donetasks, user_cookie=user_cookie)  # Pass tasks to your template for rendering
         
     except Exception as ex:
         response.status = 500  # Internal Server Error
         traceback.print_exc()  # Print the traceback for debugging
-        return "An error occurred while fetching tasks."
+        return template('cookie-expired')
 
     finally:
         if "db" in locals():

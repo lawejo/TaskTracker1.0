@@ -62,27 +62,24 @@ def set_cookie_user(cookie_user):
     JWE_OBJECT = jwk.JWK(**JWE_DICT)
     jwetoken.add_recipient(JWE_OBJECT)
     enc = jwetoken.serialize()
-    if local() == False:
-        is_cookie_https = False
-    else:
-        is_cookie_https = True
-    response.set_cookie("user", enc, secret=COOKIE_SECRET,
-                            httponly=is_cookie_https)
+    response.set_cookie("user", enc, max_age=3600, secret=COOKIE_SECRET,
+                            httponly=False)
 ##############################
 def get_cookie_user():
         cookie_user = request.get_cookie("user", secret=COOKIE_SECRET)
         if not cookie_user:
             return
         jwetoken = jwe.JWE()
-        jwetoken.deserialize(cookie_user)
+        jwetoken.deserialize(cookie_user)        
         JWE_DICT = json.loads(JWE_SECRET)
         JWE_OBJECT = jwk.JWK(**JWE_DICT)
-        jwetoken.decrypt(JWE_OBJECT)     
+        jwetoken.decrypt(JWE_OBJECT)             
         user_cookie = jwetoken.payload
         jsonload = json.loads(user_cookie)
         return jsonload
 ##############################
-
+def remove_cookie():
+    response.delete_cookie("user", secret=COOKIE_SECRET)
 # Validation of task
 
 TASK_MIN_LEN = 1
@@ -236,3 +233,25 @@ def avatar_picture():
     picture.save(f"images/avatars/{picture_name}")
   finally:
     return picture_name
+
+def set_headers():
+        # Content-Security-Policy
+        # response.set_header('Content-Security-Policy', "default-src 'self' 'unsafe-inline' ;")
+        response.set_header('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline';  font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com")
+        # X-Content-Type-Options
+        response.set_header('X-Content-Type-Options', 'nosniff')
+
+        # Cache-Control
+        response.set_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+        
+        # X-XSS-Protection
+        response.set_header('X-XSS-Protection', '1; mode=block')
+        
+        # Strict-Transport-Security
+        response.set_header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+        
+        # X-Frame-Options
+        response.set_header('X-Frame-Options', 'DENY')
+        
+        # Referrer-Policy
+        response.set_header('Referrer-Policy', 'no-referrer')

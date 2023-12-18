@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+%include('head', title="Profile")
+%include("comp-renew-session")
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/output.css" />
-
-  <title>TaskTracker</title>
-</head>
 
 <body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row">
 
-      <!-- Navigation -->
-      %include("navigation")
-      <!-- Prettier ignore -->
-      <!-- Task Creation Modal -->
-      %include("create_task")
-      <!-- Content på dashboard -->
-    % if not user_cookie:
-    <p>Error</p>
-    % else:
-    <main class="flex-1 mt-4 ml-16">
-      <div>
-        <p class="mt-4 font-medium text-h5 text-secondary">TaskPlanner</p>
-        <h1 class="font-semibold text-h1 text-secondary">Welcome, {{user_cookie["user_firstname"]}} {{user_cookie["user_lastname"]}}</h1>
+  <!-- Navigation -->
+  %include("navigation")
+  <!-- Prettier ignore -->
+  <!-- Task Creation Modal -->
+  %include("create_task")
+  <!-- Content på dashboard -->
+  % if not user_cookie:
+  <p>Error</p>
+  % else:
+  <main class="flex-1 mt-4 ml-16">
+    <div>
+      <p class="mt-4 font-medium text-h5 text-secondary">TaskPlanner</p>
+      <h1 class="font-semibold text-h1 text-secondary">Welcome, {{user_cookie["user_firstname"]}}
+        {{user_cookie["user_lastname"]}}</h1>
 
-        <!-- Task Planner -->
-        <div class="grid grid-cols-1 mt-16 gap-44">
-          <div class="">
-            <div class="flex-start items-center gap-4 text-secondary">
-              <button onclick="updateModal()" class="px-4 py-1.5 ml-auto bg-white rounded-full font-semibold text-black text-sm">Edit</button>
-              <section id="modal-update" class="hidden bg-primary rounded-2xl p-2 mx-auto w-1/3 fixed inset-0 z-100 max-h-fit my-auto">
-                <button id="closeModal" class="text-white" onclick="closeUpdateModal()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18 18l-6-6m0 0L6 6m6 6l6-6m-6 6l-6 6"/></svg></button>
-                    <div id="flex" class="flex flex-col items-center">
-                        <span class="text-white text-23 font-bold mt-4">Change first name</span>
-                        <input class="hidden" name="user_edit" value="{{user_cookie['user_firstname']}}"></input>
-                        <input type="text" name="userfirstname_update" placeholder="First name" class="rounded-xl p-2 mt-4 w-80" minlength="1" maxlength="50">
-                        <div id="errorMessageFirstname" class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
-                            <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
-                        </div>
-                        <span class="text-white text-23 font-bold mt-4">Change last name</span>
-                        <input class="hidden" name="user_edit" value="{{user_cookie['user_lastname']}}"></input>
-                        <input type="text" name="userlastname_update" placeholder="Last name" class="rounded-xl p-2 mt-4 w-80" minlength="1" maxlength="50">
-                        <div id="errorMessageLastname" class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
-                            <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
-                        </div>
-                        
-                        <span class="text-white text-23 font-bold mt-4">Change profile picture</span>
-                        <input class="rounded-xl p-2 mt-4 w-80 bg-white" type="file" name="avatar_update" id="avatarUpload" accept=".jpg, .jpeg, .png, .webp, .gif"/>
-                        <button onclick="update()" class="bg-black text-white rounded-3xl px-6 py-2 font-semibold w-80 mt-4 mb-8 hover:bg-opacity-90">Confirm</button>
-                    </div>
+      <!-- Task Planner -->
+      <div class="grid grid-cols-1 mt-16 gap-44">
+        <div class="">
+          <div class="flex-start items-center gap-4 text-secondary">
+            <button onclick="updateModal()"
+              class="px-4 py-1.5 ml-auto bg-white rounded-full font-semibold text-black text-sm">Edit</button>
+            <section id="modal-update"
+              class="hidden bg-primary rounded-2xl p-2 mx-auto w-1/3 fixed inset-0 z-100 max-h-fit my-auto">
+              <button id="closeModal" class="text-white" onclick="closeUpdateModal()"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2" d="m18 18l-6-6m0 0L6 6m6 6l6-6m-6 6l-6 6" />
+                </svg></button>
+              <div id="flex" class="flex flex-col items-center">
+                <span class="text-white text-23 font-bold mt-4">Change first name</span>
+                <input class="hidden" name="user_edit" value="{{user_cookie['user_firstname']}}"></input>
+                <input type="text" name="userfirstname_update" placeholder="First name" class="rounded-xl p-2 mt-4 w-80"
+                  minlength="1" maxlength="50">
+                <div id="errorMessageFirstname"
+                  class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
+                  <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
+                </div>
+                <span class="text-white text-23 font-bold mt-4">Change last name</span>
+                <input class="hidden" name="user_edit" value="{{user_cookie['user_lastname']}}"></input>
+                <input type="text" name="userlastname_update" placeholder="Last name" class="rounded-xl p-2 mt-4 w-80"
+                  minlength="1" maxlength="50">
+                <div id="errorMessageLastname"
+                  class="hidden items-center rounded-full p-2 mt-2 max-h-fit max-w-80 bg-red-600">
+                  <span class="text-white text-17 font-bold">English letters only and between 1 to 50 characters</span>
+                </div>
+
+                <span class="text-white text-23 font-bold mt-4">Change profile picture</span>
+                <input class="rounded-xl p-2 mt-4 w-80 bg-white" type="file" name="avatar_update" id="avatarUpload"
+                  accept=".jpg, .jpeg, .png, .webp, .gif" />
+                <button onclick="update()"
+                  class="bg-black text-white rounded-3xl px-6 py-2 font-semibold w-80 mt-4 mb-8 hover:bg-opacity-90">Confirm</button>
+              </div>
             </section>
-            </div>
           </div>
         </div>
       </div>
-    </main>
-    % end
+    </div>
+  </main>
+  % end
 </body>
 <script src="/js/update.js"></script>
 

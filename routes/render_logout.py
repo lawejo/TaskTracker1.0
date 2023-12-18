@@ -6,6 +6,7 @@ import traceback
 @get("/logout")
 def _():
     try:
+        x.set_headers()
         response.status = 303
         response.delete_cookie("user", secret=x.COOKIE_SECRET)
         return{"info":"ok", "message":"Logout succesfull"}
