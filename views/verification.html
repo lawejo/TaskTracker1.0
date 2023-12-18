@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+% if status=='Congratulations!':
+%include('head', title="Verification succes")
+% else:
+%include('head', title="Verification failed")
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/output.css" />
-  <title>{{title}}</title>
-</head>
 
 <body class="text-white bg-black">
   %include('comp_feedback')
@@ -56,21 +54,5 @@
 </body>
 
 </html>
-<article class="bg-white w-1/3 h-fit p-8  rounded-lg">
-  <p class=""><strong>Congratulations!</strong> Your account has been successfully verified. You can now access all
-    the
-    features of our
-    platform.</p>
-  <p class="mt-4">Note: To ensure the security of your account, please log in using your credentials. Close this tab
-    or use the
-    following link</p>
 
-  <button
-    class="px-2 py-2 border border-primary mt-4 hover:bg-black hover:text-white hover:rounded-lg ease-in-out transition"
-    href="/login">
-    Go to login
-  </button>
-
-
-</article>
 <script src="../js/resendEmail.js"></script>

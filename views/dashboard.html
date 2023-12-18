@@ -1,74 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/output.css" />
+%include('head', title="Create task")
 
-    <title>Create task</title>
-  </head>
 
-  <body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row">
-    <!-- Navigation -->
-    %include("navigation")
-    <!-- Prettier ignore -->
-    <!-- Task Creation Modal -->
-    %include("create_task")
-    <!-- Content på dashboard -->
-    % if not user_cookie:
-    <p>Error</p>
-    % else:
-    <main class="flex-1 mt-4 ml-16">
-      <div>
-        <p class="mt-4 font-medium text-h5 text-secondary">TaskTracker</p>
-        <h1 class="font-semibold text-h1 text-secondary">
-          Welcome, {{user_cookie["user_firstname"]}}
-          {{user_cookie["user_lastname"]}}
-        </h1>
+<body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row">
+  <!-- Navigation -->
+  %include("navigation")
+  <!-- Prettier ignore -->
 
-        <!-- Task Planner -->
-        <div class="grid grid-cols-1 gap-4 mt-6">
-          <div class="">
-            <div class="flex items-center gap-4 text-secondary">
-              <h3 class="mb-4 font-semibold text-h5">TO DO</h3>
-            </div>
-            <div class="flex gap-4 text-detail" id="taskToDo">
-              %include("task", tasks=todos)
-            </div>
-          </div>
-          <div class="">
-            <div class="flex items-center gap-4 text-secondary">
-              <h3 class="mb-4 font-semibold text-h5">IN PROGRESS</h3>
-            </div>
-            <div class="flex gap-4 mb-4 text-detail" id="taskInProgress">
-              %include("task", tasks=progtask)
-            </div>
-          </div>
-          <div class="">
-            <div class="flex items-center gap-4 text-secondary">
-              <h3 class="mb-4 font-semibold text-h5">DONE</h3>
-            </div>
-            <div class="flex gap-2 text-detail" id="taskDone">
-              %include("task", tasks=donetasks)
-            </div>
-          </div>
-        </div>
-      </div>
+  %include("comp-renew-session")
+  <!-- Task Creation Modal -->
+  %include("create_task")
+  <!-- Content på dashboard -->
+  % if not user_cookie:
+  <p>Error</p>
+  % else:
 
-      <!-- Prettier ignore -->
-    </main>
-    % end
-    <script src="../js/edit-modal.js"></script>
-    <script src="../js/task-modal.js"></script>
-    <script src="../js/create-task.js"></script>
-    <script src="../js/edit-task.js"></script>
-    <script src="../js/format-date.js"></script>
-  </body>
+  <main class="flex-1 mt-4 ml-16">
+    <div>
+      <p class="mt-4 font-medium text-h5 text-secondary">TaskPlanner</p>
+      <h1 class="font-semibold text-h1 text-secondary">
+        Welcome, {{user_cookie["user_firstname"]}}
+        {{user_cookie["user_lastname"]}}
+      </h1>
+
+      <!-- Task Planner -->
+      <div class="grid grid-cols-1 gap-4 mt-6">
+        <div class="">
+          <div class="flex items-center gap-4 text-secondary">
+            <h3 class="mb-4 font-semibold text-h5">TO DO</h3>
+
+            <body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row">
+              <!-- Navigation -->
+              %include("navigation")
+              <!-- Prettier ignore -->
+              <!-- Task Creation Modal -->
+              %include("create_task")
+              <!-- Content på dashboard -->
+              % if not user_cookie:
+              <p>Error</p>
+              % else:
+              <main class="flex-1 mt-4 ml-16">
+                <div>
+                  <p class="mt-4 font-medium text-h5 text-secondary">TaskTracker</p>
+                  <h1 class="font-semibold text-h1 text-secondary">
+                    Welcome, {{user_cookie["user_firstname"]}}
+                    {{user_cookie["user_lastname"]}}
+                  </h1>
+
+                  <!-- Task Planner -->
+                  <div class="grid grid-cols-1 gap-4 mt-6">
+                    <div class="">
+                      <div class="flex items-center gap-4 text-secondary">
+                        <h3 class="mb-4 font-semibold text-h5">TO DO</h3>
+                      </div>
+                      <div class="flex gap-4 text-detail" id="taskToDo">
+                        %include("task", tasks=todos)
+                      </div>
+                      >>>>>>> main
+                    </div>
+                    <div class="">
+                      <div class="flex items-center gap-4 text-secondary">
+                        <h3 class="mb-4 font-semibold text-h5">IN PROGRESS</h3>
+                      </div>
+                      <div class="flex gap-4 mb-4 text-detail" id="taskInProgress">
+                        %include("task", tasks=progtask)
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="flex items-center gap-4 text-secondary">
+                        <h3 class="mb-4 font-semibold text-h5">DONE</h3>
+                      </div>
+                      <div class="flex gap-2 text-detail" id="taskDone">
+                        %include("task", tasks=donetasks)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Prettier ignore -->
+              </main>
+              % end
+              <script src="../js/edit-modal.js"></script>
+              <script src="../js/task-modal.js"></script>
+              <script src="../js/create-task.js"></script>
+              <script src="../js/edit-task.js"></script>
+              <script src="../js/format-date.js"></script>
+            </body>
+
 </html>

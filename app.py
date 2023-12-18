@@ -27,6 +27,8 @@ import apis.api_delete_user
 import apis.api_admin_update_user
 import apis.api_update_user
 import apis.api_resend_email
+import apis.api_renew_cookie
+import apis.api_remove_cookie
 ##Misc
 import x
 # import apis.api_logout

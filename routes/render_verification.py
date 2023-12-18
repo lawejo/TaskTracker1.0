@@ -24,6 +24,7 @@ def _(verificationkey):
             p1 = "We encountered an issue while verifying your account. Please ensure that you are using the correct verification link"
             link =" or click here to resend an email."
             p2 = "Note: For security reasons, do not attempt to use an expired or invalid verification link. If the issue persists, kindly reach out to our support team for further assistance."
+        x.set_headers()
         db.commit()
         return template('verification', title=title, p1=p1, p2=p2, status=status, link=link)
     except Exception as ex:

@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/output.css" />
-
-    <title>Admin</title>
-</head>
+%include('head', title="Admin")
 
 <body class="bg-[#19191C] font-montserrat flex flex-col md:flex-row text-white">
 
     %include('comp_feedback')
     %include('navigation')
+    %include("comp-renew-session")
     <section class=" mt-8 ml-8">
         <h1 class="text-4xl">Welcome, Admin</h1>
         <article class="mt-14">

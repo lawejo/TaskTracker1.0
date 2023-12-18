@@ -15,7 +15,7 @@ def filter_task():
 
         # Fetch all rows and convert them to a list of dictionaries
         results = [dict(row) for row in filter_results.fetchall()]
-
+        x.set_headers()
         return {"info": "ok", "results": results} 
 
     except Exception as ex:

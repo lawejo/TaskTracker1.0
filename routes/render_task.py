@@ -11,6 +11,7 @@ def show_tasks():
         cursor = db.execute("SELECT * FROM tasks")
         tasks = cursor.fetchall()
         cursor.close()
+        x.set_headers()
         return template("task", tasks=tasks)  # Pass tasks to your template for rendering
         
     except Exception as ex:
