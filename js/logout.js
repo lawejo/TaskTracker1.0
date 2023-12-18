@@ -1,7 +1,6 @@
 "use strict"
 
 async function logout() {
-    console.log(`logout`);
     const conn = await fetch("/logout", {
         method: "GET",
     })
@@ -14,7 +13,6 @@ async function logout() {
 
     }
     function error() {
-        console.log(data.message);
     }
     // function userLogout() {
     //     fetch('/logout', {

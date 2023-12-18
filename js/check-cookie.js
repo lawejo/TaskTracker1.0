@@ -1,4 +1,6 @@
+"use strict"
 let count = 0;
+
 let modalCount = 0
 const sessionModal = document.querySelector('.renew-session')
 const removeCookieForm = document.querySelector('#remove-cookie-forn')
@@ -8,9 +10,7 @@ async function updateCookie() {
         method: "POST",
         body: new FormData(frm)
     });
-    const data = await response.json();
-    console.log(data);
-    count = 0
+    const data = await response.json(); count = 0
     closeRenewSession()
 }
 async function removeCookie() {
@@ -33,9 +33,10 @@ function updateTimer() {
         removeCookie()
     }
 }
-if (document.cookie) {
-    const timerInterval = setInterval(updateTimer, 1000);
-}
+
+
+setInterval(updateTimer, 1000);
+
 
 function resetTimer() {
     count = 0;

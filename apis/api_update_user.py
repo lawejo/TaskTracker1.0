@@ -35,11 +35,9 @@ def update():
     return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"], "new_avatar": user_cookie["user_avatar"], "new_email": user_cookie["user_email"], "new_birthday": user_cookie["user_birthday"]}
 
   except Exception as ex:
-    print("Put route error her", ex)
     return ex
   
   finally:
-    print("Database closed")
     if "db" in locals(): db.close()
 
 
@@ -73,11 +71,9 @@ def update():
     return {"info": "Update succesful", "new_user_firstname": user_cookie["user_firstname"], "new_user_lastname": user_cookie["user_lastname"]}
 
   except Exception as ex:
-    print("Put route error her", ex)
     return ex
   
   finally:
-    print("Database closed")
     if "db" in locals(): db.close()
 
 
@@ -99,11 +95,9 @@ def update():
     return {"info": "Update succesful", "new_avatar": user_cookie["user_avatar"]}
 
   except Exception as ex:
-    print("Put route error her", ex)
     return ex
   
   finally:
-    print("Database closed")
     if "db" in locals(): db.close()
 
 
@@ -124,11 +118,9 @@ def update():
     return {"info": "Update succesful", "new_email": user_cookie["user_email"]}
 
   except Exception as ex:
-    print("Put route error her", ex)
     return ex
   
   finally:
-    print("Database closed")
     if "db" in locals(): db.close()
 
 @put("/api-update-birthday")
@@ -149,9 +141,7 @@ def update():
     return {"info": "Update succesful", "new_birthday": user_cookie["user_birthday"]}
 
   except Exception as ex:
-    print("Put route error her", ex)
     return ex
   
   finally:
-    print("Database closed")
     if "db" in locals(): db.close()

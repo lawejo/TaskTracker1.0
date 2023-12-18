@@ -6,12 +6,10 @@ async function createTask() {
   });
 
   if (!conn.ok) {
-    console.log("Cannot create task");
     return;
   }
 
   const data = await conn.json();
-  console.log(data);
 
   // Call the filterTask function after successful task creation
   await filterTask();
@@ -55,12 +53,10 @@ async function filterTask() {
     });
 
     if (!conn.ok) {
-      console.log("Unable to fetch tasks");
       return;
     }
 
     const data = await conn.json();
-    console.log(data); // Handle the received data here
 
     const taskToDoElement = document.getElementById("taskToDo");
     const taskInProgressElement = document.getElementById("taskInProgress");

@@ -13,7 +13,6 @@ def _():
         db.commit()
         return {"info":"ok","message":"If the email exists in the database, you will receive an email shortly"}
     except Exception as e:
-        print(e.args[1])
         if "db" in locals(): db.rollback()
         response.status = e.args[0]
         return {"info":"error","errortype":str(e.args[0])}

@@ -26,14 +26,12 @@ def _():
                 "Your account has yet to be verified, please check your email too complete your account.")
  
         if cookie_user["user_inactive"] == "1":
-            print(cookie_user)
             raise Exception(
                 "It appears you deleted your account. Contact support to have your account retrieved.")
    
         x.set_cookie_user(cookie_user)
         return {"info": "ok", "message": "You will be redirected shortly."}
     except Exception as e:
-        print(e)
         try:
             response.status = e.args[0]
             return {"info": "error", "errortype": e.args[1]}

@@ -28,8 +28,7 @@ def _():
         db.commit()
         return {"info":"ok","message":"User updates", "user":updated_user}
     except Exception as e:
-        print(e.args[1])
-        print('*'*40)
+  
         if "db" in locals(): db.rollback()
         response.status = e.args[0]
         return {"info":"error","errortype":str(e.args[1])}

@@ -8,7 +8,6 @@ async function login() {
         body: new FormData(frm)
     })
     const data = await conn.json() // to get plain text
-    console.log(data);
     data.info === 'ok' ? succes() : error();
     function succes() {
 

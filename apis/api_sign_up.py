@@ -50,7 +50,6 @@ def _():
         for key in user:
             values += f":{key},"
         values = values.rstrip(",")
-        print(values)
         total_rows_inserted = db.execute(
             f"INSERT INTO users VALUES({values})", user).rowcount
         if total_rows_inserted != 1:
@@ -61,7 +60,6 @@ def _():
        
         return {"info":"ok", "message": "Your sign-up is complete. Please check your email to verify and enjoy full access to our services."}
     except Exception as e:
-        print(e)
         if "db" in locals():
             db.rollback()
         traceback.print_exc()
