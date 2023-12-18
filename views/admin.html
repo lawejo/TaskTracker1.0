@@ -20,9 +20,9 @@
                     <div class="flex min-w-[250px] items-center bg-primary px-4 rounded-3xl">
                         <img src="../assets/default_avatar.png" class="max-w-[34px] max-h-[34px] rounded-full" alt="">
                         <p class="h-fit pl-4">
-                            <span class="user_firstname_{{user['user_id']}}">{{user['user_firstname']}}
+                            <span class="user_firstname_{{user['user_id']}}">{{!user['user_firstname']}}
                             </span>
-                            <span class="user_lastname_{{user['user_id']}}">{{user['user_lastname']}}
+                            <span class="user_lastname_{{user['user_id']}}">{{!user['user_lastname']}}
                             </span>
                         </p>
                     </div>
@@ -37,8 +37,8 @@
                                 </svg></button>
                             <div class="flex flex-col items-center px-6">
                                 <p class="w-80 text-center">To confirm that you want to delete user
-                                    <span id="username_{{user['user_id']}}" class="font-bold">{{user['user_firstname']}}
-                                        {{user['user_lastname']}}</span>, please enter your
+                                    <span id="username_{{user['user_id']}}" class="font-bold">{{!user['user_firstname']}}
+                                        {{!user['user_lastname']}}</span>, please enter your
                                     password
                                 </p>
                                 <span class="text-white text-23 font-bold mt-4">Admin Password</span>
@@ -64,14 +64,14 @@
                             <div class="flex flex-col items-center px-6 [&>input]:text-black">
                                 <p class="w-80 text-center">To confirm that you want to delete user
                                     <span id="username_{{user['user_id']}}" class="font-bold">
-                                        {{user['user_firstname']}}
-                                        {{user['user_lastname']}}
+                                        {{!user['user_firstname']}}
+                                        {{!user['user_lastname']}}
                                     </span>, please enter your
                                     password
                                 </p>
                                 <form onsubmit="adminUpdateUser(); return false" class="text-black flex flex-col">
-                                    <input type="text" class="hidden" name="user_id" id="{{user['user_id']}}"
-                                        value="{{user['user_id']}}">
+                                    <input type="text" class="hidden" name="user_id" id="{{!user['user_id']}}"
+                                        value="{{!user['user_id']}}">
                                     <div class="flex">
                                         <div class="flex flex-col mr-2">
                                             <label class="text-white text-23 font-bold mt-4">Firstname</label>
