@@ -63,7 +63,7 @@ def set_cookie_user(cookie_user):
     jwetoken.add_recipient(JWE_OBJECT)
     enc = jwetoken.serialize()
     response.set_cookie("user", enc, max_age=3600, secret=COOKIE_SECRET,
-                            httponly=False)
+                            httponly=True)
 ##############################
 def get_cookie_user():
         cookie_user = request.get_cookie("user", secret=COOKIE_SECRET)
