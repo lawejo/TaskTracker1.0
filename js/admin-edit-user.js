@@ -8,12 +8,10 @@ async function adminUpdateUser() {
         body: new FormData(frm)
     });
     const data = await response.json();
-    console.log(data);
     const userData = data.user;
     const message = data.message
     data.info === 'ok' ? success() : error();
     function success() {
-        console.log(frm);
         const firstname = document.querySelector(`.user_firstname_${frm[0].value}`)
         const lastname = document.querySelector(`.user_lastname_${frm[0].value}`)
         firstname.innerHTML = userData.user_firstname

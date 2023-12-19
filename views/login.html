@@ -27,11 +27,30 @@
                     class=" h-10 rounded-2xl pl-2 w-full  text-white bg-black border border-white/30"
                     placeholder="Password" name="user_password" type="password" required>
 
+                <div class="flex">
 
 
+                    <div class="flex flex-col gap-0.5 justify-start mb-4">
+                        <div class="inline-flex">
+                            <p class="text-detail">Forgot password?</p>&nbsp;
+                            <p id="bottomResetPassword" onclick="showResetPassword()"
+                                class="text-white hover:underline cursor-pointer">
+                                Reset password</p>
+                        </div>
+                        <input id="passwordInput"
+                            class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80"
+                            type="password" placeholder="New password">
+                        <input id="emailInput"
+                            class="hidden login-enter rounded-md bg-transparent invalid:border-[#F4212E] text-white text-17 placeholder-twitter-grey outline-none group border border-twitter-line focus:border-twitter-blue py-4 p-2 mt-4 w-80"
+                            type="email" placeholder="Email">
+                        <button id="resetEmailButton" onclick="resetPassword()"
+                            class="hidden bg-detail text-white rounded-full px-6 py-2 font-semibold w-80 mt-4 hover:bg-opacity-90"
+                            type="submit">Send reset email</button>
+                    </div>
+                    <button
+                        class="bg-secondary text-black max-w-fit ml-auto px-4 py-2 text-center rounded-2xl mt-4 h-fit">Login</button>
 
-                <button
-                    class="bg-secondary text-black max-w-fit ml-auto px-4 py-2 text-center rounded-2xl mt-4">Login</button>
+                </div>
             </form>
 
         </article>
@@ -39,5 +58,6 @@
     </section>
 </body>
 <script src="/js/login.js"></script>
+<script src="/js/reset-password.js"></script>
 
 </html>

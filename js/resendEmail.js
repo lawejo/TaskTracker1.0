@@ -2,15 +2,12 @@
 const feedbackElement = document.querySelector('.feedback-element');
 
 async function resendEmailAsync() {
-    console.log(`aa`);
     const frm = event.target;
-    console.log(frm);
     const response = await fetch("/api-resend-email", {
         method: "POST",
         body: new FormData(frm)
     });
     const data = await response.json();
-    console.log(data);
     data.info === 'ok' ? succes() : error();
     function succes() {
 

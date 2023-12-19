@@ -62,7 +62,7 @@ def set_cookie_user(cookie_user):
     JWE_OBJECT = jwk.JWK(**JWE_DICT)
     jwetoken.add_recipient(JWE_OBJECT)
     enc = jwetoken.serialize()
-    response.set_cookie("user", enc, max_age=3600, secret=COOKIE_SECRET,
+    response.set_cookie("user", enc, samesite='none', max_age=3600, secret=COOKIE_SECRET,
                             httponly=True)
 ##############################
 def get_cookie_user():
@@ -94,12 +94,14 @@ def validate_task():
     return request.forms.task_description
 ##### Email address
 EMAIL_AHREF = ''
+URL = ''
 try:
     import production
-    EMAIL_AHREF = 'pythonanywhere'
+    EMAIL_AHREF = 'http://127.0.0.1:5858'
+    URL = 'pythonanywhere'
 except Exception as ex:
-    print("Running local server")
     EMAIL_AHREF = "http://127.0.0.1:5858"
+    URL = 'http://127.0.0.1:5858'
 
 
 ##############################
@@ -254,4 +256,4 @@ def set_headers():
         response.set_header('X-Frame-Options', 'DENY')
         
         # Referrer-Policy
-        response.set_header('Referrer-Policy', 'no-referrer')
+        response.set_header('Referrer-Policy', 'strict-origin')

@@ -14,20 +14,15 @@ def send_reset_email():
         db = x.db()
         user_email = request.forms.get("user_email")
         salt = bcrypt.gensalt()
-        print(user_email, "user_email")
         user_password = bcrypt.hashpw(x.validate_user_password().encode("utf-8"), salt)
         user = db.execute("SELECT * FROM users WHERE user_email = ? LIMIT 1", (user_email,)).fetchone()
         if user:
-            print("HELLO FROM THE OTHER SIDE3")
             user_inactive = 1
-            user_deactive = db.execute("UPDATE users SET user_password = ?, user_inactive = ? WHERE user_email = ?", (user_password, user_inactive, user_email)).rowcount
-            print("DANGERDANGER",user_deactive)
-            print(user_inactive)
+            db.execute("UPDATE users SET user_password = ?, user_inactive = ? WHERE user_email = ?", (user_password, user_inactive, user_email)).rowcount
             db.commit()
             password_resetting(user_email, user["user_firstname"])
         return {"info reset":"Succesfully sent reset password email"}
     except Exception as ex:
-        print("reset", ex)
         return ex
     finally:
         if "db" in locals(): db.close()
@@ -36,7 +31,6 @@ def send_reset_email():
 @get("/reset-password/<user_firstname>")
 def reset_password(user_firstname):
     try:
-        print("I AM IN reset.py", user_firstname)
         db = x.db()
         user_inactive = 0
         rows_affected = db.execute("UPDATE users SET user_inactive = ? WHERE user_firstname = ?", (user_inactive, user_firstname)).rowcount

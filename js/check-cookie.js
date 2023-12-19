@@ -1,4 +1,6 @@
+"use strict"
 let count = 0;
+
 let modalCount = 0
 const sessionModal = document.querySelector('.renew-session')
 const removeCookieForm = document.querySelector('#remove-cookie-forn')
@@ -8,9 +10,7 @@ async function updateCookie() {
         method: "POST",
         body: new FormData(frm)
     });
-    const data = await response.json();
-    console.log(data);
-    count = 0
+    const data = await response.json(); count = 0
     closeRenewSession()
 }
 async function removeCookie() {
@@ -27,27 +27,31 @@ async function removeCookie() {
 
 function updateTimer() {
     count = count + 1;
-    if (count >= 300 && sessionModal.classList.contains('hidden')) {
+    if (count >= 5 && sessionModal.classList.contains('hidden')) {
         sessionModal.classList.remove('hidden')
-    } else if (count >= 600 && !sessionModal.classList.contains('hidden')) {
+    } else if (count >= 10 && !sessionModal.classList.contains('hidden')) {
         removeCookie()
     }
 }
-if (document.cookie) {
-    const timerInterval = setInterval(updateTimer, 1000);
-}
+
+
+setInterval(updateTimer, 60000);
+
 
 function resetTimer() {
+    !sessionModal.classList.contains('hidden') ? sessionModal.classList.add('hidden') : ''
     count = 0;
 
 }
 function closeRenewSession() {
     sessionModal.classList.add('hidden')
 }
-window.onload = resetTimer;
-window.onmousemove = resetTimer;
-window.onmousedown = resetTimer;
-window.ontouchstart = resetTimer;
-window.onclick = resetTimer;
-window.onkeypress = resetTimer;
+if (count < 5) {
+    window.onload = resetTimer;
+    window.onmousemove = resetTimer;
+    window.onmousedown = resetTimer;
+    window.ontouchstart = resetTimer;
+    window.onclick = resetTimer;
+    window.onkeypress = resetTimer;
+}
 

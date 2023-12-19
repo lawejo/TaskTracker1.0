@@ -3,5 +3,5 @@ import x
 ##############################
 @get("/login")
 def _():
-    # x.set_headers()
-    return template("login")
+    user_cookie = x.get_cookie_user()
+    return template("login", user_cookie=user_cookie)

@@ -10,16 +10,14 @@ function showResetPassword() {
 async function resetPassword() {
     const password = passwordInput.value
     const email = emailInput.value
-    console.log(password, email)
     const formData = new FormData();
     formData.append('user_password', password);
     formData.append('user_email', email);
 
     const response = await fetch("/reset-password", {
-        method: "POST", 
+        method: "POST",
         body: formData
     })
 
     const data = await response.json()
-    console.log("EMIIIIIIIIL", data)
 }

@@ -87,7 +87,6 @@ def _():
 
 #############################
 if x.local() == False:
-    print("Running local server")
     run(host="127.0.0.1", port=5858, debug=True, reloader=True, )
 else:
     import production

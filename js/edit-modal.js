@@ -8,9 +8,7 @@ function openTaskModal(button) {
   const taskDueDate = document.querySelector(".task_due_date").textContent;
   const taskDescription = taskContainer.querySelector(".text-text").textContent;
 
-  console.log(taskId);
   // const modalTitle = modal.querySelector("h2");
-  // console.log(modal.firstChild.firstChild);
   // modalTitle.textContent = taskTitle;
 
   const editTaskForm = document.getElementById("editTaskForm");
