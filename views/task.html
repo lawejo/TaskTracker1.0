@@ -6,6 +6,7 @@
         <p class="text-xs text-detail">{{! task["task_created_at"] }}</p>
         <form method="DELETE" onsubmit="deleteTask(); return false">
           <input type="hidden" name="task_id" value="{{task['task_id']}}" />
+          %if user_cookie:
           <button type="submit" class="text-xs delete-button text-detail">
             Delete
           </button>
@@ -13,6 +14,7 @@
         <button class="text-xs text-detail" onclick="openTaskModal(this)">
           Edit Task
         </button>
+        %end
       </div>
       <h3 class="my-2 text-secondary text-h4 task_title">
         {{! task["task_title"] }}

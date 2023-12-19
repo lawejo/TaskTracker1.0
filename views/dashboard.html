@@ -8,19 +8,23 @@
   %include("navigation")
   <!-- Prettier ignore -->
 
+  %if user_cookie:
   %include("comp-renew-session")
   <!-- Task Creation Modal -->
   %include("create_task")
+  %end
   <!-- Content på dashboard -->
 
 
   <main class="flex-1 mt-4 ml-16">
     <div>
       <p class="mt-4 font-medium text-h5 text-secondary">TaskTracker</p>
+      %if user_cookie:
       <h1 class="font-semibold text-h1 text-secondary">
         Welcome, {{!user_cookie["user_firstname"]}}
         {{!user_cookie["user_lastname"]}}
       </h1>
+      %end
 
       <!-- Task Planner -->
       <div class="grid grid-cols-1 gap-4 mt-6">

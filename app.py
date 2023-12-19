@@ -39,7 +39,10 @@ load_dotenv()
 # import apis.api_logout
 # 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
 # https://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@github.com/lawejo/tasktracker.git
-@post('/'+os.getenv("GIT_HOOK"))
+print('*'*40)
+print(f'FROM app.py = {x.GIT_HOOK}')
+print('*'*40)
+@post(f'/{x.GIT_HOOK}')
 def git_update():
     repo = git.Repo('./mysite')
     origin = repo.remotes.origin

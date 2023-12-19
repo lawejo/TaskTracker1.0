@@ -15,6 +15,7 @@ load_dotenv()
 # Load variables from .env file
 COOKIE_SECRET = os.getenv("COOKIE_SECRET")
 JWE_SECRET = os.getenv("JWE_SECRET")
+GIT_HOOK = os.getenv("GIT_HOOK")
 ##############################
 ##### Database
 
@@ -62,7 +63,7 @@ def set_cookie_user(cookie_user):
     JWE_OBJECT = jwk.JWK(**JWE_DICT)
     jwetoken.add_recipient(JWE_OBJECT)
     enc = jwetoken.serialize()
-    response.set_cookie("user", enc, samesite='none', max_age=3600, secret=COOKIE_SECRET,
+    response.set_cookie("user", enc, samesite='Strict', max_age=3600, secret=COOKIE_SECRET,
                             httponly=True)
 ##############################
 def get_cookie_user():

@@ -30,6 +30,7 @@ def _():
                 "It appears you deleted your account. Contact support to have your account retrieved.")
    
         x.set_cookie_user(cookie_user)
+        
         return {"info": "ok", "message": "You will be redirected shortly."}
     except Exception as e:
         try:

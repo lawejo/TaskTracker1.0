@@ -1,7 +1,8 @@
 "use strict"
+console.log(`1`);
 const url = window.location
 const target = document.querySelector(".loginB")
-if (url.pathname === '/dashboard') {
+if (url.pathname === '/dashboard' && target) {
     target.insertAdjacentHTML("afterbegin", `
     <button id="openModal">
     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 20 20">
