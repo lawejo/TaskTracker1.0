@@ -29,11 +29,24 @@ import apis.api_update_user
 import apis.api_resend_email
 import apis.api_renew_cookie
 import apis.api_remove_cookie
+import apis.api_reset_password
 ##Misc
 import x
+import git
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # import apis.api_logout
-import apis.api_reset_password
-
+# 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
+# https://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@github.com/lawejo/tasktracker.git
+@post('/'+os.getenv("GIT_HOOK"))
+def git_update():
+    repo = git.Repo('./mysite')
+    origin = repo.remotes.origin
+    repo.create_head('main', origin.refs.main).set_tracking_branch(
+        origin.refs.main).checkout()
+    origin.pull()
+    return ""
 ##############################
 ##### Så den kan finde vores JS
 

@@ -8,11 +8,11 @@ import pathlib
 import re
 import uuid
 from dotenv import load_dotenv
+load_dotenv()
 
 ##############################
 ##### Cookie
 # Load variables from .env file
-load_dotenv()
 COOKIE_SECRET = os.getenv("COOKIE_SECRET")
 JWE_SECRET = os.getenv("JWE_SECRET")
 ##############################
