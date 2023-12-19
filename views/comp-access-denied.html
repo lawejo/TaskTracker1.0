@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 %include('head', title="Access denied")
+%if user_cookie:
 %include("comp-renew-session")
+%end
 
 <body class="text-white bg-black">
     <section

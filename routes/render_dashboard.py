@@ -13,7 +13,7 @@ def show_tasks():
         user_cookie = x.get_cookie_user()
 
         if not user_cookie:
-            raise Exception("No cookie detected")
+            return template('cookie-expired', user_cookie = user_cookie)
         todo = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("todo",))
         todos = todo.fetchall()
         inprogress = db.execute("SELECT * FROM tasks WHERE task_status = ?", ("inprogress",))

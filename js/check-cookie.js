@@ -27,28 +27,31 @@ async function removeCookie() {
 
 function updateTimer() {
     count = count + 1;
-    if (count >= 300 && sessionModal.classList.contains('hidden')) {
+    if (count >= 5 && sessionModal.classList.contains('hidden')) {
         sessionModal.classList.remove('hidden')
-    } else if (count >= 600 && !sessionModal.classList.contains('hidden')) {
+    } else if (count >= 10 && !sessionModal.classList.contains('hidden')) {
         removeCookie()
     }
 }
 
 
-setInterval(updateTimer, 1000);
+setInterval(updateTimer, 60000);
 
 
 function resetTimer() {
+    !sessionModal.classList.contains('hidden') ? sessionModal.classList.add('hidden') : ''
     count = 0;
 
 }
 function closeRenewSession() {
     sessionModal.classList.add('hidden')
 }
-window.onload = resetTimer;
-window.onmousemove = resetTimer;
-window.onmousedown = resetTimer;
-window.ontouchstart = resetTimer;
-window.onclick = resetTimer;
-window.onkeypress = resetTimer;
+if (count < 5) {
+    window.onload = resetTimer;
+    window.onmousemove = resetTimer;
+    window.onmousedown = resetTimer;
+    window.ontouchstart = resetTimer;
+    window.onclick = resetTimer;
+    window.onkeypress = resetTimer;
+}
 

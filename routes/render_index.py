@@ -7,8 +7,10 @@ import x
 def render_index():
 
     try:
+     
+        user_cookie = x.get_cookie_user()
         x.set_headers()
-        return template("index")
+        return template("index", user_cookie=user_cookie)
     except Exception as ex:
         traceback.print_exc()
         response.status = 500
